@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reservar Visita — Granadas Frescas</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght=600;700&family=Lato:wght=400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../static/css/output.css"/>
+  <link rel="stylesheet" href="../static/css/inicio.css"/>
+
+  <style>
+    body {
+      padding-top: 120px;
+      background-color: #fcf8f6;
+      font-family: 'Lato', sans-serif;
+    }
+    .form-container {
+      max-width: 600px;
+      margin: 40px auto;
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+    .form-container h1 {
+      font-family: 'Playfair Display', serif;
+      color: #2b0f08;
+      font-size: 32px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    .form-container p.subtitle {
+      text-align: center;
+      color: #70534c;
+      margin-bottom: 30px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: #2b0f08;
+      font-weight: bold;
+    }
+    .form-control {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #d1c2be;
+      border-radius: 8px;
+      box-sizing: border-box;
+      font-size: 15px;
+    }
+    .form-control:focus {
+      outline: none;
+      border-color: #e04a2b;
+    }
+    .btn-submit {
+      width: 100%;
+      background: #e04a2b;
+      color: white;
+      border: none;
+      padding: 15px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+      margin-top: 10px;
+    }
+    .btn-submit:hover {
+      background: #c93b1e;
+    }
+    .alert {
+      padding: 15px;
+      background: #e1f5fe;
+      color: #0288d1;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      text-align: center;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <a class="nav-logo" href="/">
+      <img src="../static/image/logo.png" alt="Logo" style="width: 100px; height: auto; margin-right: 70px;">
+      <span>Granadas Frescas</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="productos.html">Productos</a></li>
+      <li><a href="beneficios.html">Beneficios</a></li>
+      <li><a href="nosotros.html">Nosotros</a></li>
+      <li><a href="galeria.html">Galería</a></li>
+      <li><a href="chat.html">Chat IA</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="form-container">
+      <h1>Agendar Visita al Huerto</h1>
+      <p class="subtitle">Ven a conocer de dónde nacen las mejores granadas, realiza una degustación y adquiere tus productos directo de la cosecha.</p>
+
+      {% if mensaje %}
+        <div class="alert">{{ mensaje }}</div>
+      {% endif %}
+
+      <form action="/visitas.html" method="POST">
+        <div class="form-group">
+          <label for="nombre">Nombre Completo</label>
+          <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Ej. Juan Pérez" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Correo Electrónico</label>
+          <input type="email" id="email" name="email" class="form-control" placeholder="juan@gmail.com" required>
+        </div>
+
+        <div class="form-group">
+          <label for="telefono">Teléfono / WhatsApp</label>
+          <input type="tel" id="telefono" name="telefono" class="form-control" placeholder="Ej. +51 987654321" required>
+        </div>
+
+        <div class="form-group">
+          <label for="fecha_visita">Fecha Planeada</label>
+          <input type="date" id="fecha_visita" name="fecha_visita" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+          <label for="cantidad_personas">Número de Visitantes</label>
+          <input type="number" id="cantidad_personas" name="cantidad_personas" class="form-control" min="1" max="20" placeholder="1" required>
+        </div>
+
+        <div class="form-group">
+          <label for="interes_compra">¿Qué producto te interesa adquirir en tu visita?</label>
+          <select id="interes_compra" name="interes_compra" class="form-control" required>
+            <option value="">Selecciona una opción...</option>
+            <option value="Granadas Frescas por Jaba">Granadas Frescas en Fruta</option>
+            <option value="Jugo de Granada Natural">Jugo 100% Puro de Granada</option>
+            <option value="Cajas de Selección Premium">Cajas Premium de Selección</option>
+            <option value="Todos los Productos">Variado / Probar de todo un poco</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn-submit">Confirmar mi Reserva</button>
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    <strong>Granadas Frescas</strong>
+    <p>Calle Frutal 123, Valle Verde · +51 931127110 · valleverde@gmail.com</p>
+    <p>© 2024 Granadas Frescas. Todos los derechos reservados.</p>
+  </footer>
+
+</body>
+</html>

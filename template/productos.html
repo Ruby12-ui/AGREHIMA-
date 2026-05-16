@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Productos — Granadas Frescas</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+
+  <link rel="stylesheet" href="../static/css/output.css"/>
+  <link rel="stylesheet" href="../static/css/input.css"/>
+
+  <!--  CSS DEL BANNER (AGREGADO) -->
+  <style>
+    body {
+     margin: 0;
+    }
+    .banner {
+      height: 500px;
+      width: 100vw;                 /* ancho total pantalla */
+      margin-left: calc(-50vw + 50%);
+      background: url('../static/image/granadas_frescas.jpg') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .banner-overlay {
+      width: 100%;
+      height: 32vw;
+      background: rgba(0,0,0,0.5);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .banner h1 {
+      color: #fff;
+      font-size: 50px;
+      letter-spacing: 3px;
+      margin-bottom: 10px;
+    }
+
+    .banner p {
+      color: #fff;
+      font-size: 14px;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <!-- ═══ NAV ═══ -->
+  <nav id="navbar">
+<a class="nav-logo" href="index.html">
+  <img src="../static/image/logo.png" alt="Logo Granadas Frescas" style="width: 100px; height: auto; margin-right: 70px; margin-top: 30px;">
+  <span>Granadas Frescas</span>
+</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="productos.html">Productos</a></li>
+      <li><a href="beneficios.html">Beneficios</a></li>
+      <li><a href="nosotros.html">Nosotros</a></li>
+      <li><a href="galeria.html">Galería</a></li>
+      <li><a href="visitas.html">Visitas</a></li>
+      <li><a href="chat.html">Chat IA</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!--  BANNER AGREGADO -->
+  <section class="banner">
+    <div class="banner-overlay">
+      <h1>PRODUCTOS</h1>
+      <p>Granadas delisiosas</p>
+    </div>
+  </section>
+
+  <!-- ═══ PRODUCTOS ═══ -->
+  <div class="page-wrap">
+    <section id="productos">
+      <div class="section-header reveal">
+        <span class="section-label">Nuestros Productos</span>
+        <h2>Granadas Frescas y Jugosas</h2>
+        <p>Disfruta del sabor dulce y refrescante de nuestras granadas recién cosechadas, cultivadas de forma natural y sostenible.</p>
+      </div>
+
+      <div class="productos-grid">
+
+        <div class="producto-card reveal">
+          <div class="producto-img">
+            <img src="../static/image/granada_entera.jpg" alt="Granadas enteras"/>
+            <span class="prod-badge">Cosecha 2024</span>
+          </div>
+          <div class="producto-body">
+            <h3>Granada Entera Premium</h3>
+            <p>La Granada Entera Premium es una fruta seleccionada de alta calidad, caracterizada por su excelente tamaño, color uniforme y cáscara en buen estado. Es jugosa, dulce y fresca, ideal para consumo directo, jugos o ensaladas. Representa la mejor opción para quienes buscan sabor, frescura y buena presentación.</p>
+          </div>
+        </div>
+
+        <div class="producto-card reveal" style="transition-delay:0.12s">
+          <div class="producto-img">
+            <img src="../static/image/granada_granos.jpg" alt="Granos de granada"/>
+            <span class="prod-badge">Popular</span>
+          </div>
+          <div class="producto-body">
+            <h3>Granos Listos para Usar</h3>
+            <p>Granos de granada desgranados y listos para agregar a tus ensaladas, postres, smoothies o consumir solos.</p>
+          </div>
+        </div>
+
+        <div class="producto-card reveal" style="transition-delay:0.24s">
+          <div class="producto-img">
+            <img src="../static/image/granada_pequeña.jpg" alt="Jugo de granada"/>
+            <span class="prod-badge">Nuevo</span>
+          </div>
+          <div class="producto-body">
+            <h3>Granada de segunda </h3>
+            <p>La granada de segunda calidad es una fruta fresca con algunas imperfecciones en su cáscara, pero mantiene su buen sabor y jugosidad es ideal para consumo diario, especialmente en jugos y postres, ya que conserva sus propiedades nutritivas.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer>
+    <strong>Granadas Frescas</strong>
+    <p>Calle Frutal 123, Valle Verde &nbsp;·&nbsp; +51 931127110 &nbsp;·&nbsp; valleverde@gmail.com</p>
+    <p>© 2024 Granadas Frescas. Todos los derechos reservados. &nbsp;·&nbsp; <a href="index.html">↑ Inicio</a></p>
+  </footer>
+
+  <script src="../static/js/script.js"></script>
+
+</body>
+</html>

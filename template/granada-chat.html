@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Granada Chat — Granadas Frescas</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght=500;600&family=Lato:wght=300;400;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../static/css/output.css" />
+  <link rel="stylesheet" href="../static/css/input.css" />
+
+  <style>
+    body {
+      padding-top: 110px;
+      background-color: #120502; /* Fondo oscuro elegante */
+      color: #f7e6e1;
+    }
+
+    /* ESTILOS DE LA TARJETA DE CONTRASEÑA */
+    .api-card {
+      background: #2b0f08; 
+      border: 1px solid #4a1d13;
+      border-radius: 24px;
+      padding: 35px;
+      width: 100%;
+      max-width: 480px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      font-family: 'Lato', sans-serif;
+    }
+
+    .api-card h2 {
+      font-family: 'Playfair Display', serif;
+      color: #f7e6e1;
+      font-size: 28px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .api-card p {
+      color: #cca499;
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+
+    .api-input {
+      width: 100%;
+      background: #1c0a05;
+      border: 1px solid #5c271b;
+      border-radius: 14px;
+      padding: 16px;
+      color: #ffffff;
+      font-size: 16px;
+      margin-bottom: 25px;
+      outline: none;
+      box-sizing: border-box;
+    }
+
+    .api-btn {
+      width: 100%;
+      background: #e04a2b; 
+      color: white;
+      border: none;
+      border-radius: 14px;
+      padding: 16px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    /* ========================================= */
+    /* NUEVOS ESTILOS DE LA INTERFAZ DE CHAT REAL */
+    /* ========================================= */
+    .chat-container {
+      width: 100%;
+      max-width: 800px;
+      background: #1c0a05;
+      border: 1px solid #3d160c;
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+      display: flex;
+      flex-direction: column;
+      height: 600px;
+      font-family: 'Lato', sans-serif;
+    }
+
+    .chat-header {
+      background: #2b0f08;
+      padding: 20px;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      border-bottom: 1px solid #3d160c;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .chat-header h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      margin: 0;
+    }
+
+    .chat-messages {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    /* Burbujas de chat */
+    .message {
+      max-width: 75%;
+      padding: 14px 18px;
+      border-radius: 16px;
+      line-height: 1.5;
+      font-size: 15px;
+    }
+
+    .message.bot {
+      background: #2b0f08;
+      color: #f7e6e1;
+      align-self: flex-start;
+      border-bottom-left-radius: 4px;
+      border: 1px solid #4a1d13;
+    }
+
+    .message.user {
+      background: #e04a2b;
+      color: white;
+      align-self: flex-end;
+      border-bottom-right-radius: 4px;
+    }
+
+    .chat-footer {
+      padding: 20px;
+      background: #2b0f08;
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+      border-top: 1px solid #3d160c;
+    }
+
+    .chat-form {
+      display: flex;
+      gap: 10px;
+    }
+
+    .chat-input {
+      flex: 1;
+      background: #120502;
+      border: 1px solid #5c271b;
+      border-radius: 12px;
+      padding: 14px;
+      color: white;
+      font-size: 15px;
+      outline: none;
+    }
+
+    .chat-send-btn {
+      background: #e04a2b;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      padding: 0 25px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <a class="nav-logo" href="/">
+      <img src="../static/image/logo.png" alt="Logo Granadas Frescas" style="width: 100px; height: auto; margin-right: 70px;">
+      <span>Granadas Frescas</span>
+    </a>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="/">Inicio</a></li>
+      <li><a href="/productos.html">Productos</a></li>
+      <li><a href="/beneficios.html">Beneficios</a></li>
+      <li><a href="/nosotros.html">Nosotros</a></li>
+      <li><a href="/galeria.html">Galería</a></li>
+      <li><a href="/visitas.html">Visitas</a></li>
+      <li><a href="/chat.html">Chat IA</a></li>
+    </ul>
+  </nav>
+
+  <main style="min-height: 80vh; display:flex; justify-content:center; align-items:center; padding:40px 20px;">
+    
+    {% if autenticado %}
+      <div class="chat-container">
+        <div class="chat-header">
+          <h3> Granada Chat Inteligente</h3>
+          <a href="/chat/salir" style="color: #ff6b6b; text-decoration: none; font-size: 14px; font-weight: bold;"> Cerrar Sesión</a>
+        </div>
+        
+        <div class="chat-messages" id="chatBox">
+          <div class="message bot">
+            ¡Hola! Bienvenido a AGREHIMA. ¿En qué te puedo ayudar hoy? Te puedo contar sobre nuestros cultivos, beneficios o productos.
+          </div>
+        </div>
+        
+        <div class="chat-footer">
+          <form class="chat-form" id="chatForm">
+            <input type="text" id="userInput" class="chat-input" placeholder="Escribe tu pregunta sobre las granadas aquí..." autocomplete="off" required />
+            <button type="submit" class="chat-send-btn">Enviar</button>
+          </form>
+        </div>
+      </div>
+    {% else %}
+      <div class="api-card">
+        <h2> Granada Chat</h2>
+        <p>Ingresa la contraseña de acceso para usar el chat.</p>
+        
+        <form action="/chat.html" method="POST">
+          <input type="password" class="api-input" placeholder="Escribe la contraseña aquí..." name="api_key" required />
+          
+          {% if error %}
+            <p style="color: #ff6b6b; font-size: 14px; margin-top: -15px; margin-bottom: 15px; font-weight: bold;">{{ error }}</p>
+          {% endif %}
+                 
+          <button type="submit" class="api-btn">Empezar a chatear</button>
+        </form>
+      </div>
+    {% endif %}
+
+  </main>
+
+  <footer>
+    <strong>Granadas Frescas</strong>
+    <p>Calle Frutal 123, Valle Verde · +51 931127110 · valleverde@gmail.com</p>
+    <p>© 2024 Granadas Frescas. Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    const chatForm = document.getElementById('chatForm');
+    const chatBox = document.getElementById('chatBox');
+    const userInput = document.getElementById('userInput');
+
+    if (chatForm) {
+      chatForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const text = userInput.value.trim();
+        if (!text) return;
+
+        // 1. Agregar el mensaje del usuario a la pantalla
+        appendMessage(text, 'user');
+        userInput.value = '';
+
+        // 2. Simular escritura y respuesta inteligente de la IA
+        setTimeout(() => {
+          let respuestaBot = "Lo siento, sigo aprendiendo sobre nuestras deliciosas granadas. ¿Podrías intentar preguntarme de otra manera?";
+          const query = text.toLowerCase();
+
+          if (query.includes('beneficio') || query.includes('salud') || query.includes('bueno')) {
+            respuestaBot = "¡Nuestras granadas son un superalimento! Tienen un alto contenido de antioxidantes, ayudan a proteger el corazón, mejoran la digestión y fortalecen el sistema inmunológico gracias a su vitamina C.";
+          } else if (query.includes('producto') || query.includes('precio') || query.includes('venden')) {
+            respuestaBot = "Ofrecemos granadas frescas recién cosechadas, jugos 100% naturales sin azúcar añadida y cajas premium para regalo o distribución. Puedes ver más detalles en nuestra pestaña de Productos.";
+          } else if (query.includes('hola') || query.includes('buenos dias')) {
+            respuestaBot = "¡Hola! Qué gusto saludarte. ¿Te gustaría saber más sobre los beneficios de la granada o nuestros horarios de entrega?";
+          } else if (query.includes('donde') || query.includes('direccion') || query.includes('ubicacion')) {
+            respuestaBot = "Nos encontramos en la Calle Frutal 123, Valle Verde. ¡Nuestras tierras producen las mejores granadas de la región!";
+          }
+
+          appendMessage(respuestaBot, 'bot');
+        }, 800);
+      });
+    }
+
+    function appendMessage(text, sender) {
+      const msgDiv = document.createElement('div');
+      msgDiv.classList.add('message', sender);
+      msgDiv.innerText = text;
+      chatBox.appendChild(msgDiv);
+      chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll hacia abajo
+    }
+  </script>
+</body>
+</html>
