@@ -81,7 +81,7 @@ def visitas():
 # =====================================================
 # CHAT GRANADA (VALIDACIÓN CON CONTRASEÑA "granada")
 # =====================================================
-@app.route('/chat.html', methods=['GET', 'POST'])
+@app.route('/granada-chat.html', methods=['GET', 'POST'])
 def chat():
     error = None
     if request.method == 'POST':
@@ -102,44 +102,6 @@ def salir_chat():
     session.pop('chat_autenticado', None)
     return redirect(url_for('chat'))
 
-# =====================================================
-# CONTACTO
-# =====================================================
-@app.route('/contacto.html', methods=['GET', 'POST'])
-def contacto():
-    mensaje = ''
-    if request.method == 'POST':
-        nombre = request.form.get('nombre', '').strip()
-        apellido = request.form.get('apellido', '').strip()
-        email = request.form.get('email', '').strip()
-        telefono = request.form.get('telefono', '').strip()
-        mensaje_texto = request.form.get('mensaje', '').strip()
-
-        if not all([nombre, apellido, email, telefono, mensaje_texto]):
-            mensaje = 'Todos los campos son obligatorios.'
-        else:
-            conexion = None
-            cursor = None
-            try:
-                conexion = get_connection()
-                cursor = conexion.cursor()
-                sql = "INSERT INTO contactos (nombre, apellido, email, telefono, mensaje) VALUES (%s, %s, %s, %s, %s)"
-                valores = (nombre, apellido, email, telefono, mensaje_texto)
-                cursor.execute(sql, valores)
-                conexion.commit()
-                mensaje = '¡Mensaje enviado correctamente!'
-            except Exception as e:
-                logging.error(f'Error al guardar contacto: {e}')
-                mensaje = 'Ocurrió un error al enviar el mensaje.'
-            finally:
-                if cursor is not None: cursor.close()
-                if conexion is not None and conexion.is_connected(): conexion.close()
-
-    return render_template('contacto.html', mensaje=mensaje)
-
-@app.errorhandler(404)
-def not_found(e):
-    return render_template('index.html'), 404
 
 if __name__ == '__main__':
     app.run(debug=True)
