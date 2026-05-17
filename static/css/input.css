@@ -1,24 +1,33 @@
 /* ═══════════════════════════════════════
-   input.css — Estilos de páginas internas
-   Productos, Beneficios, Nosotros,
-   Galería, Contacto
+   input.css — Estilos de páginas INTERNAS
+   Se usa en: Productos, Beneficios,
+   Nosotros, Galería, Contacto
+   NO se usa en index.html (usa inicio.css)
    ═══════════════════════════════════════ */
 
-/* NAVBAR */
+/* ──────────────────────────────────────
+   ESPACIADO GENERAL
+   El navbar ocupa espacio fijo arriba,
+   las secciones tienen padding generoso
+   ────────────────────────────────────── */
 #navbar {
-  padding: 40px 60px; /* aumenta altura y espacio */
+  padding: 40px 60px;
 }
+
 section {
-  padding: 6rem 4rem;
+  padding: 6rem 4rem; /* Espacio vertical y horizontal generoso */
 }
 
 /* ════════════════════════════════
-   PRODUCTOS
+   SECCIÓN: PRODUCTOS
+   Grid de tarjetas con imagen,
+   badge de categoría y descripción
    ════════════════════════════════ */
 #productos {
-  background: var(--crema);
+  background: var(--crema); /* Fondo crema suave */
 }
 
+/* Grid responsivo: auto-ajusta columnas según el ancho */
 .productos-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -27,6 +36,7 @@ section {
   margin: 0 auto;
 }
 
+/* Tarjeta individual de producto */
 .producto-card {
   background: #fff;
   border-radius: 16px;
@@ -35,11 +45,13 @@ section {
   transition: transform 0.35s, box-shadow 0.35s;
 }
 
+/* La tarjeta sube al hacer hover */
 .producto-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 16px 48px rgba(192,57,43,0.16);
 }
 
+/* Contenedor de la imagen superior de la tarjeta */
 .producto-img {
   height: 220px;
   overflow: hidden;
@@ -52,10 +64,12 @@ section {
   transition: transform 0.45s;
 }
 
+/* Zoom en la imagen al hacer hover en la tarjeta */
 .producto-card:hover .producto-img img {
   transform: scale(1.07);
 }
 
+/* Badge de categoría (ej: "Popular", "Nuevo") */
 .prod-badge {
   position: absolute;
   top: 1rem; right: 1rem;
@@ -69,6 +83,7 @@ section {
   border-radius: 20px;
 }
 
+/* Área de texto debajo de la imagen */
 .producto-body {
   padding: 1.5rem;
 }
@@ -84,7 +99,12 @@ section {
   color: var(--gris);
   line-height: 1.6;
 }
-/* BOTÓN ROJO */
+
+/* ──────────────────────────────────────
+   BOTÓN ROJO ANIMADO (.btn-custom)
+   Usado en beneficios.html
+   Se mueve de lado a lado continuamente
+   ────────────────────────────────────── */
 .btn-custom {
   background-color: #c0392b;
   color: #fff;
@@ -93,36 +113,30 @@ section {
   text-decoration: none;
   display: inline-block;
   position: relative;
-
-  /* MOVIMIENTO */
-  animation: moverLado 4s infinite alternate ease-in-out;
-
-  /* SUAVIDAD */
+  animation: moverLado 4s infinite alternate ease-in-out; /* Movimiento lateral */
   transition: background-color 0.3s ease;
 }
 
-/* OSCURECE AL PASAR EL MOUSE */
 .btn-custom:hover {
-  background-color: #922b21;
+  background-color: #922b21; /* Más oscuro al pasar el mouse */
 }
 
-/* ANIMACIÓN DERECHA ↔ IZQUIERDA */
+/* Animación: se mueve 20px a la derecha y vuelve */
 @keyframes moverLado {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(20px);
-  }
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(20px); }
 }
 
 /* ════════════════════════════════
-   BENEFICIOS
+   SECCIÓN: BENEFICIOS
+   Diseño de 2 columnas: imagen a la
+   izquierda, contenido a la derecha
    ════════════════════════════════ */
 #beneficios {
   background: #ffffff;
 }
 
+/* Grid de 2 columnas iguales */
 .beneficios-inner {
   max-width: 1100px;
   margin: 0 auto;
@@ -132,6 +146,7 @@ section {
   align-items: center;
 }
 
+/* Imagen grande con sombra y bordes redondeados */
 .beneficios-img-wrap {
   position: relative;
   border-radius: 20px;
@@ -145,10 +160,11 @@ section {
   object-fit: cover;
 }
 
+/* Texto flotante sobre la parte inferior de la imagen */
 .bene-float {
   position: absolute;
   bottom: 0; left: 0; right: 0;
-  background: linear-gradient(transparent, rgba(40,8,4,0.72));
+  background: linear-gradient(transparent, rgba(40,8,4,0.72)); /* Degradado oscuro */
   padding: 2rem 1.5rem 1.5rem;
 }
 
@@ -159,6 +175,7 @@ section {
   line-height: 1.5;
 }
 
+/* Título de la columna de contenido */
 .beneficios-content h2 {
   font-family: var(--font-display);
   font-size: clamp(1.7rem, 2.5vw, 2.4rem);
@@ -172,6 +189,7 @@ section {
   font-size: 0.97rem;
 }
 
+/* Grid de 2 columnas para Minerales y Vitaminas */
 .nutrientes-wrap {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -182,6 +200,7 @@ section {
   margin: 1.5rem 0;
 }
 
+/* Título de cada columna (MINERALES / VITAMINAS) */
 .nutriente-col h4 {
   font-size: 0.72rem;
   font-weight: 700;
@@ -191,10 +210,12 @@ section {
   margin-bottom: 0.8rem;
 }
 
+/* Lista de minerales sin bullets predeterminados */
 .nutriente-list {
   list-style: none;
 }
 
+/* Cada mineral con un punto rojo personalizado */
 .nutriente-list li {
   font-size: 0.88rem;
   padding: 0.3rem 0;
@@ -204,6 +225,7 @@ section {
   gap: 8px;
 }
 
+/* Punto rojo pequeño antes de cada mineral */
 .nutriente-list li::before {
   content: '';
   width: 5px; height: 5px;
@@ -212,6 +234,7 @@ section {
   flex-shrink: 0;
 }
 
+/* Contenedor de los círculos de vitaminas */
 .vitaminas-grid {
   display: flex;
   gap: 10px;
@@ -219,6 +242,7 @@ section {
   margin-top: 0.5rem;
 }
 
+/* Círculo de cada vitamina */
 .vita-badge {
   width: 42px; height: 42px;
   border-radius: 50%;
@@ -228,11 +252,13 @@ section {
   color: #fff;
 }
 
-.vita-A   { background: #E74C3C; }
-.vita-D   { background: #E67E22; }
-.vita-B6  { background: #27AE60; }
-.vita-B12 { background: #8E44AD; }
+/* Colores únicos por vitamina */
+.vita-A   { background: #E74C3C; } /* Rojo */
+.vita-D   { background: #E67E22; } /* Naranja */
+.vita-B6  { background: #27AE60; } /* Verde */
+.vita-B12 { background: #8E44AD; } /* Morado */
 
+/* Nota informativa con borde izquierdo rojo */
 .beneficios-nota {
   background: var(--crema);
   border-left: 3px solid var(--rojo);
@@ -244,69 +270,70 @@ section {
 }
 
 /* ════════════════════════════════
-   NOSOTROS
+   SECCIÓN: NOSOTROS
+   Tarjetas de Misión, Visión e Historia
    ════════════════════════════════ */
+
+/* Tarjeta individual (Misión, Visión, Historia) */
 .mvh-card {
-  /* Forzamos el blanco puro para que resalte sobre el fondo crema */
-  background-color: #F5F0E8 !important; 
-  
+  background-color: #F5F0E8 !important; /* Fondo crema para resaltar */
   border-radius: 14px;
   padding: 2.5rem;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
-  border-top: 3px solid var(--rojo) !important;
+  border-top: 3px solid var(--rojo) !important; /* Línea roja arriba */
   display: flex;
   flex-direction: column;
   justify-content: center;
-  
-  /* Esto quita cualquier efecto de cambio de color previo */
-  transition: none !important;
+  transition: none !important; /* Sin animación de color */
 }
 
-/* Bloqueamos cualquier cambio al pasar el mouse */
+/* Al pasar el mouse: color crema más oscuro, sin movimiento */
 .mvh-card:hover {
   background-color: #ebdaba !important;
   transform: none !important;
 }
+
 /* ════════════════════════════════
-   ALIADOS (IMÁGENES)
+   ALIADOS (logos de socios)
+   Grid de 4 logos en fila
    ════════════════════════════════ */
 .aliados-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 1fr); /* 4 logos en desktop */
   gap: 1.5rem;
   max-width: 900px;
   margin: 30px auto 0 auto;
 }
 
+/* Logos con altura fija y ajuste proporcional */
 .aliados-grid img {
   width: 100%;
   height: 50px;
-  object-fit: contain;
+  object-fit: contain; /* Mantiene proporciones sin recortar */
 }
 
-.aliados-grid img:nth-child(3),
-.aliados-grid img:nth-child(4) {
-  transform: scale(1.0); /* reduce visualmente sin deformar */
-}
-
+/* Zoom suave al pasar el mouse sobre un logo */
 .aliados-grid img:hover {
   transform: scale(1.08);
   box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
-/* Responsive */
+/* En tablet: 2 logos por fila */
 @media (max-width: 900px) {
   .aliados-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
 /* ════════════════════════════════
-   GALERÍA
+   SECCIÓN: GALERÍA
+   Slider de fotos con flechas y puntos
    ════════════════════════════════ */
 #galeria {
   background: hsl(0, 0%, 100%);
 }
 
+/* Frase en cursiva sobre el slider */
 .galeria-quote {
   text-align: center;
   font-family: var(--font-display);
@@ -318,8 +345,9 @@ section {
   line-height: 1.65;
 }
 
+/* Comillas decorativas automáticas */
 .galeria-quote::before {
-  content: '\201C';
+  content: '\201C'; /* " */
   color: var(--rojo);
   font-size: 2em;
   line-height: 0;
@@ -328,7 +356,7 @@ section {
 }
 
 .galeria-quote::after {
-  content: '\201D';
+  content: '\201D'; /* " */
   color: var(--rojo);
   font-size: 2em;
   line-height: 0;
@@ -336,22 +364,25 @@ section {
   margin-left: 4px;
 }
 
+/* Contenedor del slider con bordes redondeados */
 .slider-wrap {
   position: relative;
   max-width: 860px;
   margin: 0 auto;
   border-radius: 20px;
-  overflow: hidden;
+  overflow: hidden; /* Oculta las imágenes que están fuera de vista */
   box-shadow: 0 20px 60px rgba(192,57,43,0.14);
   height: 460px;
 }
 
+/* Pista del slider: todas las imágenes en fila horizontal */
 .slider-track {
   display: flex;
   height: 100%;
-  transition: transform 0.55s cubic-bezier(0.4,0,0.2,1);
+  transition: transform 0.55s cubic-bezier(0.4,0,0.2,1); /* Animación suave */
 }
 
+/* Cada diapositiva ocupa exactamente el 100% del ancho */
 .slide {
   min-width: 100%;
   height: 100%;
@@ -362,10 +393,11 @@ section {
   object-fit: cover;
 }
 
+/* Botones de flecha (anterior / siguiente) */
 .slider-btn {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-50%); /* Centrado vertical */
   background: rgba(255,255,255,0.92);
   border: none;
   width: 46px; height: 46px;
@@ -382,12 +414,14 @@ section {
 
 .slider-btn:hover {
   background: #fff;
-  transform: translateY(-50%) scale(1.08);
+  transform: translateY(-50%) scale(1.08); /* Crece un poco al hover */
 }
 
+/* Posición de cada flecha */
 .slider-btn.prev { left:  1rem; }
 .slider-btn.next { right: 1rem; }
 
+/* Contenedor de los puntos de navegación */
 .slider-dots {
   display: flex;
   justify-content: center;
@@ -395,6 +429,7 @@ section {
   margin-top: 1.5rem;
 }
 
+/* Punto individual (creados dinámicamente por JS) */
 .slider-dot {
   width: 8px; height: 8px;
   border-radius: 50%;
@@ -404,6 +439,7 @@ section {
   border: none;
 }
 
+/* Punto activo: más ancho y color sólido */
 .slider-dot.active {
   background: var(--rojo);
   width: 24px;
@@ -411,7 +447,9 @@ section {
 }
 
 /* ════════════════════════════════
-   CONTACTO
+   SECCIÓN: CONTACTO
+   2 columnas: info a la izquierda,
+   formulario a la derecha
    ════════════════════════════════ */
 #contacto {
   background: var(--crema);
@@ -440,8 +478,10 @@ section {
   margin-bottom: 2rem;
 }
 
+/* Bloque de info (teléfono, email, etc.) */
 .info-item { margin-bottom: 1.4rem; }
 
+/* Etiqueta pequeña roja (ej: "TELÉFONO") */
 .info-item .lbl {
   font-size: 0.7rem;
   font-weight: 700;
@@ -451,12 +491,14 @@ section {
   margin-bottom: 0.25rem;
 }
 
+/* Valor del dato de contacto */
 .info-item .val {
   font-size: 0.95rem;
   color: var(--texto);
   line-height: 1.55;
 }
 
+/* Imagen decorativa en la columna de info */
 .contacto-img-wrap {
   height: 200px;
   border-radius: 14px;
@@ -469,6 +511,7 @@ section {
   object-fit: cover;
 }
 
+/* Tarjeta blanca que contiene el formulario */
 .form-card {
   background: #fff;
   border-radius: 18px;
@@ -483,12 +526,14 @@ section {
   color: var(--texto);
 }
 
+/* Fila de 2 campos lado a lado (nombre y apellido) */
 .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
 }
 
+/* Grupo de campo: label + input */
 .form-group { margin-bottom: 1rem; }
 
 .form-group label {
@@ -501,6 +546,7 @@ section {
   margin-bottom: 0.4rem;
 }
 
+/* Campos de texto del formulario */
 .form-group input,
 .form-group textarea {
   width: 100%;
@@ -516,6 +562,7 @@ section {
   resize: none;
 }
 
+/* Borde rojo y sombra al enfocar un campo */
 .form-group input:focus,
 .form-group textarea:focus {
   border-color: var(--rojo);
@@ -524,27 +571,98 @@ section {
 
 .form-group textarea { height: 120px; }
 
+/* Mensaje de éxito o error después de enviar */
 .form-msg {
   margin-top: 1rem;
   padding: 0.8rem 1rem;
   border-radius: 8px;
   font-size: 0.88rem;
   font-weight: 700;
-  display: none;
+  display: none; /* Oculto por defecto, JS lo muestra */
 }
 
-.form-msg.success { background: rgba(39,174,96,0.1); color: #1e8449; }
-.form-msg.error   { background: rgba(192,57,43,0.1);  color: var(--rojo-dark); }
+.form-msg.success { background: rgba(39,174,96,0.1); color: #1e8449; } /* Verde */
+.form-msg.error   { background: rgba(192,57,43,0.1); color: var(--rojo-dark); } /* Rojo */
 
-/* ── RESPONSIVE ── */
+/* ──────────────────────────────────────
+   RESPONSIVE TABLET (hasta 900px)
+   Las grids de 2 columnas pasan a 1
+   ────────────────────────────────────── */
 @media (max-width: 900px) {
   section { padding: 4rem 1.5rem; }
 
+  /* Beneficios: imagen arriba, texto abajo */
   .beneficios-inner  { grid-template-columns: 1fr; gap: 2.5rem; }
   .beneficios-img-wrap { height: 300px; }
+
+  /* Nosotros: tarjetas en columna */
   .mvh-grid          { grid-template-columns: 1fr; }
+  .mvh-card:last-child { grid-column: span 1; }
+
+  /* Contacto: info arriba, formulario abajo */
   .contacto-inner    { grid-template-columns: 1fr; gap: 2rem; }
   .form-row          { grid-template-columns: 1fr; }
-  .slider-wrap       { height: 260px; }
+
+  /* Slider más bajo */
+  .slider-wrap       { height: 300px; }
+
+  /* Productos: una columna */
   .productos-grid    { grid-template-columns: 1fr; }
+
+  /* Nutrientes: mantiene 2 columnas en tablet */
+  .nutrientes-wrap   { grid-template-columns: 1fr 1fr; }
+
+  /* Galería: frase más pequeña */
+  .galeria-quote { font-size: 1rem; padding: 0 1rem; }
+
+  /* Aliados: 2 por fila */
+  .aliados-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ──────────────────────────────────────
+   RESPONSIVE MÓVIL (hasta 600px)
+   Ajustes finales para pantallas pequeñas
+   ────────────────────────────────────── */
+@media (max-width: 600px) {
+  section { padding: 3rem 1rem; }
+
+  /* Navbar sin padding extra */
+  #navbar { padding: 0 1rem !important; }
+
+  /* Banner más bajo y texto más pequeño */
+  .banner { height: 220px !important; }
+  .banner h1 { font-size: 28px !important; letter-spacing: 1.5px !important; }
+  .banner p  { font-size: 12px !important; }
+  .banner-overlay { height: auto !important; padding: 1.5rem 0 !important; }
+
+  /* Productos */
+  .productos-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+  .producto-img   { height: 180px; }
+  .producto-body h3 { font-size: 1rem; }
+
+  /* Beneficios */
+  .beneficios-inner  { gap: 1.5rem; }
+  .beneficios-img-wrap { height: 230px; border-radius: 14px; }
+  .nutrientes-wrap   { grid-template-columns: 1fr; gap: 1rem; padding: 1rem; }
+  .vitaminas-grid    { gap: 8px; }
+  .vita-badge        { width: 36px; height: 36px; font-size: 0.75rem; }
+  .beneficios-nota   { font-size: 0.82rem; }
+  .beneficios-content h2 { font-size: 1.5rem; }
+
+  /* Nosotros */
+  .mvh-grid          { grid-template-columns: 1fr; gap: 1rem; }
+  .mvh-card          { padding: 1.5rem; }
+  .mvh-card:last-child { grid-column: span 1; }
+  .aliados-grid      { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .aliados-grid img  { height: 40px; }
+
+  /* Galería */
+  .slider-wrap  { height: 220px; border-radius: 12px; }
+  .slider-btn   { width: 36px; height: 36px; font-size: 0.85rem; }
+  .galeria-quote { font-size: 0.88rem; margin-bottom: 1.5rem; }
+
+  /* Formularios */
+  .form-card    { padding: 1.5rem; border-radius: 12px; }
+  .form-row     { grid-template-columns: 1fr; }
+  .btn-custom   { font-size: 0.82rem; padding: 10px 18px; }
 }

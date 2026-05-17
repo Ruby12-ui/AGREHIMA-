@@ -1,46 +1,73 @@
+/* ═══════════════════════════════════════
+   inicio.css — Estilos exclusivos de index.html
+   Solo se carga en la página de inicio
+   Controla el hero con video de fondo
+   ═══════════════════════════════════════ */
+
+/* ──────────────────────────────────────
+   SECCIÓN HERO (#inicio)
+   Ocupa toda la pantalla con el video
+   de fondo y el contenido encima
+   ────────────────────────────────────── */
 #inicio {
-  height: 100vh;
-  min-height: 600px;
+  height: 100vh;       /* Altura completa de la ventana */
+  min-height: 600px;   /* Mínimo para pantallas muy pequeñas */
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: center; /* Centra el contenido verticalmente */
   overflow: hidden;
 }
 
+/* Padding especial del navbar en la página de inicio */
 #navbar {
   padding: 40px 60px;
 }
 
+/* ──────────────────────────────────────
+   FONDO CON VIDEO
+   El video ocupa todo el espacio del hero
+   ────────────────────────────────────── */
 .hero-bg {
   position: absolute;
-  inset: 0;
+  inset: 0; /* Cubre todo: top, right, bottom, left = 0 */
   overflow: hidden;
 }
 
+/* El video llena todo el contenedor sin distorsionarse */
 .video-bg {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 0; left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover; /* Recorta para llenar sin deformar */
 }
 
+/* Capa de degradado oscuro sobre el video para legibilidad */
 .hero-bg::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(30,5,2,0.78) 0%, rgba(140,30,20,0.52) 55%, transparent 100%);
-  z-index: 1;
+  background: linear-gradient(
+    135deg,
+    rgba(30,5,2,0.78) 0%,    /* Muy oscuro a la izquierda */
+    rgba(140,30,20,0.52) 55%, /* Rojo oscuro en el centro */
+    transparent 100%           /* Transparente a la derecha */
+  );
+  z-index: 1; /* Encima del video */
 }
 
+/* ──────────────────────────────────────
+   CONTENIDO DEL HERO
+   Texto, tag, botones sobre el video
+   ────────────────────────────────────── */
 .hero-content {
   position: relative;
-  z-index: 2;
+  z-index: 2;          /* Encima del degradado */
   padding: 0 6rem;
   max-width: 620px;
 }
 
+/* Pequeña etiqueta "100% Natural · Cultivado con Amor" */
 .hero-tag {
   display: inline-block;
   background: rgba(255,255,255,0.15);
@@ -52,22 +79,25 @@
   padding: 0.4rem 1rem;
   border-radius: 20px;
   margin-bottom: 1.5rem;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px); /* Efecto cristal */
 }
 
+/* Título principal grande */
 .hero-content h1 {
   font-family: var(--font-display);
-  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-size: clamp(2.4rem, 5vw, 3.8rem); /* Tamaño fluido */
   color: #fff;
   line-height: 1.12;
   margin-bottom: 1rem;
 }
 
+/* La palabra en cursiva del título (color verde) */
 .hero-content h1 em {
   font-style: italic;
   color: #0c782e;
 }
 
+/* Párrafo descriptivo debajo del título */
 .hero-content p {
   color: rgba(255,255,255,0.85);
   font-size: 1rem;
@@ -76,11 +106,16 @@
   line-height: 1.7;
 }
 
+/* ──────────────────────────────────────
+   INDICADOR DE SCROLL
+   Texto "Scroll" con línea animada
+   en la parte inferior central del hero
+   ────────────────────────────────────── */
 .hero-scroll {
   position: absolute;
   bottom: 2rem;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%); /* Centrado horizontal */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -91,6 +126,7 @@
   text-transform: uppercase;
 }
 
+/* Línea delgada con partícula que baja en bucle */
 .scroll-line {
   width: 1px;
   height: 40px;
@@ -99,6 +135,7 @@
   overflow: hidden;
 }
 
+/* Partícula de luz que recorre la línea hacia abajo */
 .scroll-line::after {
   content: '';
   position: absolute;
@@ -110,26 +147,81 @@
   animation: scrollAnim 2s ease-in-out infinite;
 }
 
+/* Animación: la partícula baja continuamente */
 @keyframes scrollAnim {
-  0% { top: -50%; }
+  0%   { top: -50%; }
   100% { top: 120%; }
 }
 
+/* ──────────────────────────────────────
+   RESPONSIVE TABLET (hasta 900px)
+   ────────────────────────────────────── */
 @media (max-width: 900px) {
-  .hero-content { padding: 0 2rem; }
+  .hero-content { padding: 0 2rem; } /* Menos padding lateral */
 }
 
-/* ════════════════════════════════
-   ANIMACIÓN BOTONES (PALPITAR SIEMPRE)
-   ════════════════════════════════ */
+/* ──────────────────────────────────────
+   RESPONSIVE MÓVIL (hasta 600px)
+   ────────────────────────────────────── */
+@media (max-width: 600px) {
+  #navbar { padding: 0 1rem !important; }
 
+  #inicio { min-height: 100svh; } /* 100% del viewport visual en móvil */
+
+  /* Contenido ocupa todo el ancho */
+  .hero-content {
+    padding: 0 1.2rem;
+    max-width: 100%;
+  }
+
+  /* Etiqueta más pequeña */
+  .hero-tag {
+    font-size: 0.62rem;
+    padding: 0.35rem 0.85rem;
+    margin-bottom: 1rem;
+  }
+
+  /* Título más pequeño */
+  .hero-content h1 {
+    font-size: clamp(1.8rem, 7vw, 2.6rem);
+    line-height: 1.18;
+    margin-bottom: 0.8rem;
+  }
+
+  /* Texto más compacto */
+  .hero-content p {
+    font-size: 0.88rem;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Botones apilados verticalmente */
+  .btn-primary,
+  .btn-outline {
+    padding: 0.7rem 1.4rem;
+    font-size: 0.72rem;
+    display: block;
+    text-align: center;
+    margin-left: 0 !important;
+    margin-bottom: 0.7rem;
+    width: fit-content;
+  }
+
+  /* Ocultar el indicador de scroll en móvil */
+  .hero-scroll { display: none; }
+}
+
+/* ──────────────────────────────────────
+   ANIMACIÓN DE BOTONES (PALPITAR)
+   Los botones del hero laten suavemente
+   en bucle para llamar la atención
+   ────────────────────────────────────── */
 .btn-primary,
 .btn-outline {
   animation: pulse 2s ease-in-out infinite;
 }
 
 @keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.08); }
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.08); } /* Crece un poco */
   100% { transform: scale(1); }
 }
