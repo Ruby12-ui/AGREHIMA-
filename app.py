@@ -44,7 +44,7 @@ def get_connection():
 # su template correspondiente
 # ──────────────────────────────────────
 
-@app.route('/index.html')
+@app.route('/')
 def index():
     # Página de inicio
     return render_template('index.html')
