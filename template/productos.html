@@ -4,56 +4,10 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Productos — Granadas Frescas</title>
-
-  <!-- Fuentes de Google -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
-
-  <!-- CSS compartido + CSS de páginas internas -->
   <link rel="stylesheet" href="../static/css/output.css"/>
   <link rel="stylesheet" href="../static/css/input.css"/>
-
-  <!-- CSS local: estilos del banner superior de esta página -->
-  <style>
-    body { margin: 0; }
-
-    /* Banner hero de la página con imagen de fondo */
-    .banner {
-      height: 500px;
-      width: 100vw;                      /* Ancho total de la pantalla */
-      margin-left: calc(-50vw + 50%);    /* Rompe el contenedor para ir al borde */
-      background: url('../static/image/granadas_frescas.jpg') center/cover no-repeat;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* Capa oscura semitransparente sobre la imagen */
-    .banner-overlay {
-      width: 100%;
-      height: 32vw;
-      background: rgba(0,0,0,0.5);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* Título grande del banner */
-    .banner h1 {
-      color: #fff;
-      font-size: 50px;
-      letter-spacing: 3px;
-      margin-bottom: 10px;
-    }
-
-    /* Subtítulo del banner */
-    .banner p {
-      color: #fff;
-      font-size: 14px;
-    }
-  </style>
 </head>
-
 <body>
 
   <!-- ═══ NAVBAR ═══ -->
@@ -71,36 +25,31 @@
       <li><a href="visitas.html">Visitas</a></li>
       <li><a href="granada-chat.html">Chat IA</a></li>
     </ul>
-    <!-- Hamburguesa para móvil -->
     <button class="hamburger" id="hamburger" aria-label="Menú">
       <span></span><span></span><span></span>
     </button>
   </nav>
 
-  <!-- ═══ BANNER: imagen de cabecera de la página ═══ -->
-  <section class="banner">
+  <!-- ═══ BANNER ═══ -->
+  <section class="banner banner--productos">
     <div class="banner-overlay">
       <h1>PRODUCTOS</h1>
       <p>Granadas deliciosas</p>
     </div>
   </section>
 
-  <!-- ═══ CONTENIDO PRINCIPAL: grid de productos ═══ -->
-  <!-- page-wrap añade padding-top para compensar el navbar fijo -->
+  <!-- ═══ CONTENIDO ═══ -->
   <div class="page-wrap">
     <section id="productos">
 
-      <!-- Encabezado centrado de la sección -->
       <div class="section-header reveal">
         <span class="section-label">Nuestros Productos</span>
         <h2>Granadas Frescas y Jugosas</h2>
         <p>Disfruta del sabor dulce y refrescante de nuestras granadas recién cosechadas, cultivadas de forma natural y sostenible.</p>
       </div>
 
-      <!-- Grid de 3 tarjetas de producto -->
       <div class="productos-grid">
 
-        <!-- Tarjeta 1: Granada Entera Premium -->
         <div class="producto-card reveal">
           <div class="producto-img">
             <img src="../static/image/granada_entera.jpg" alt="Granadas enteras"/>
@@ -112,7 +61,6 @@
           </div>
         </div>
 
-        <!-- Tarjeta 2: Granos listos para usar (con delay de animación) -->
         <div class="producto-card reveal" style="transition-delay:0.12s">
           <div class="producto-img">
             <img src="../static/image/granada_granos.jpg" alt="Granos de granada"/>
@@ -124,7 +72,6 @@
           </div>
         </div>
 
-        <!-- Tarjeta 3: Granada de segunda (con delay mayor) -->
         <div class="producto-card reveal" style="transition-delay:0.24s">
           <div class="producto-img">
             <img src="../static/image/granada_pequeña.jpg" alt="Jugo de granada"/>
@@ -147,7 +94,6 @@
     <p>© 2024 Granadas Frescas. Todos los derechos reservados. &nbsp;·&nbsp; <a href="/">↑ Inicio</a></p>
   </footer>
 
-  <!-- JS compartido -->
   <script src="../static/js/script.js"></script>
 </body>
 </html>

@@ -4,67 +4,9 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Beneficios — Granadas Frescas</title>
-
-  <!-- Fuentes de Google -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
-
-  <!-- CSS compartido + CSS de páginas internas -->
   <link rel="stylesheet" href="../static/css/output.css"/>
   <link rel="stylesheet" href="../static/css/input.css"/>
-
-  <!-- CSS local: banner + efectos específicos de esta página -->
-  <style>
-    /* Padding del navbar en páginas internas */
-    #navbar { padding: 40px 60px; }
-
-    body { margin: 0; }
-
-    /* Banner hero con imagen de fondo */
-    .banner {
-      height: 500px;
-      width: 100vw;
-      margin-left: calc(-50vw + 50%);
-      background: url('../static/image/frutas.jpg') center/cover no-repeat;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* Overlay oscuro sobre la imagen del banner */
-    .banner-overlay {
-      width: 100%;
-      height: 32vw;
-      background: rgba(0,0,0,0.5);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .banner h1 {
-      color: #fff;
-      font-size: 50px;
-      letter-spacing: 3px;
-      margin-bottom: 10px;
-    }
-
-    .banner p { color: #fff; font-size: 14px; }
-
-    /* Zoom en la imagen de beneficios al pasar el mouse */
-    .beneficios-img-wrap { overflow: hidden; border-radius: 15px; }
-    .beneficios-img-wrap img { transition: transform 0.4s ease; }
-    .beneficios-img-wrap:hover img { transform: scale(1.1); }
-
-    /* Animación de brillo en el botón de la sección */
-    #beneficios .btn-primary {
-      animation: colorChange 2s infinite alternate;
-    }
-
-    @keyframes colorChange {
-      0%   { filter: brightness(1); }
-      100% { filter: brightness(0.8); }
-    }
-  </style>
 </head>
 <body>
 
@@ -83,46 +25,39 @@
       <li><a href="visitas.html">Visitas</a></li>
       <li><a href="granada-chat.html">Chat IA</a></li>
     </ul>
-    <!-- Hamburguesa para móvil -->
     <button class="hamburger" id="hamburger" aria-label="Menú">
       <span></span><span></span><span></span>
     </button>
   </nav>
 
-  <!-- ═══ BANNER: cabecera de la página ═══ -->
-  <section class="banner">
+  <!-- ═══ BANNER ═══ -->
+  <section class="banner banner--beneficios">
     <div class="banner-overlay">
       <h1>BENEFICIOS</h1>
       <p>Salud y bienestar natural</p>
     </div>
   </section>
 
-  <!-- ═══ CONTENIDO: layout de 2 columnas (imagen + info) ═══ -->
+  <!-- ═══ CONTENIDO ═══ -->
   <div class="page-wrap">
     <section id="beneficios">
       <div class="beneficios-inner">
 
-        <!-- COLUMNA IZQUIERDA: imagen grande con texto flotante -->
-        <!-- reveal-left: aparece deslizándose desde la izquierda -->
+        <!-- Columna izquierda: imagen -->
         <div class="beneficios-img-wrap reveal-left">
           <img src="../static/image/granada_beneficios.jpg" alt="Granada abierta" style="width: 100%; height: 100%; object-fit: cover;"/>
-          <!-- Texto sobre la imagen (gradiente oscuro abajo) -->
           <div class="bene-float">
             <p>"Rica en antioxidantes, vitaminas y minerales esenciales para tu bienestar diario."</p>
           </div>
         </div>
 
-        <!-- COLUMNA DERECHA: información nutricional -->
-        <!-- reveal-right: aparece deslizándose desde la derecha -->
+        <!-- Columna derecha: información nutricional -->
         <div class="beneficios-content reveal-right">
           <span class="section-label">Beneficios y Propiedades</span>
           <h2>Por qué elegir nuestras Granadas</h2>
           <p>Nuestras granadas son cultivadas de forma natural, ricas en antioxidantes y nutrientes esenciales, perfectas para jugos, postres o consumir directamente.</p>
 
-          <!-- Grid de 2 columnas: Minerales y Vitaminas -->
           <div class="nutrientes-wrap">
-
-            <!-- Lista de minerales -->
             <div class="nutriente-col">
               <h4>Minerales</h4>
               <ul class="nutriente-list">
@@ -133,8 +68,6 @@
                 <li>Zinc</li>
               </ul>
             </div>
-
-            <!-- Círculos de vitaminas con colores únicos -->
             <div class="nutriente-col">
               <h4>Vitaminas</h4>
               <div class="vitaminas-grid">
@@ -146,16 +79,14 @@
             </div>
           </div>
 
-          <!-- Nota informativa con borde izquierdo rojo y link a FDA -->
           <div class="beneficios-nota">
             Previene el envejecimiento prematuro y mantiene la piel sana. Favorece la oxidación saludable y ayuda a reducir la presión arterial.
             Beneficia el corazón, mejora el colesterol y brinda claridad mental y bienestar general.
-            Nosotros trabajamos desde una base muy importante como es la
+            Trabajamos desde una base muy importante como es la
             <a href="https://www.fda.gov/about-fda/fda-en-espanol" target="_blank">FDA en español</a>.
           </div>
 
           <br/>
-          <!-- Botón animado que lleva a la página de visitas -->
           <a href="visitas.html" class="btn-custom">Organizar visitas</a>
         </div>
 
@@ -170,7 +101,6 @@
     <p>© 2024 Granadas Frescas. Todos los derechos reservados. &nbsp;·&nbsp; <a href="/">↑ Inicio</a></p>
   </footer>
 
-  <!-- JS compartido -->
   <script src="../static/js/script.js"></script>
 </body>
 </html>

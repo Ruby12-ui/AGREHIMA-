@@ -4,215 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Granada Chat — Granadas Frescas</title>
-
-  <!-- Fuentes de Google -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght=500;600&family=Lato:wght=300;400;700&display=swap" rel="stylesheet" />
-
-  <!-- CSS compartido + CSS de páginas internas -->
   <link rel="stylesheet" href="../static/css/output.css" />
   <link rel="stylesheet" href="../static/css/input.css" />
-
-  <!-- CSS local: estilos del chat y formulario de contraseña -->
-  <style>
-    /* Fondo oscuro elegante para la página del chat */
-    body {
-      padding-top: 110px;
-      background-color: #120502;
-      color: #f7e6e1;
-    }
-
-    /* ── TARJETA DE CONTRASEÑA ──
-       Se muestra cuando el usuario NO está autenticado */
-    .api-card {
-      background: #2b0f08;
-      border: 1px solid #4a1d13;
-      border-radius: 24px;
-      padding: 35px;
-      width: 100%;
-      max-width: 480px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-      font-family: 'Lato', sans-serif;
-    }
-
-    .api-card h2 {
-      font-family: 'Playfair Display', serif;
-      color: #f7e6e1;
-      font-size: 28px;
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .api-card p {
-      color: #cca499;
-      font-size: 15px;
-      line-height: 1.6;
-      margin-bottom: 25px;
-    }
-
-    /* Campo de contraseña */
-    .api-input {
-      width: 100%;
-      background: #1c0a05;
-      border: 1px solid #5c271b;
-      border-radius: 14px;
-      padding: 16px;
-      color: #ffffff;
-      font-size: 16px;
-      margin-bottom: 25px;
-      outline: none;
-      box-sizing: border-box;
-    }
-
-    /* Botón de acceso al chat */
-    .api-btn {
-      width: 100%;
-      background: #e04a2b;
-      color: white;
-      border: none;
-      border-radius: 14px;
-      padding: 16px;
-      font-size: 16px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    /* ── INTERFAZ DEL CHAT ──
-       Se muestra cuando el usuario SÍ está autenticado */
-
-    /* Contenedor principal del chat */
-    .chat-container {
-      width: 100%;
-      max-width: 800px;
-      background: #1c0a05;
-      border: 1px solid #3d160c;
-      border-radius: 20px;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-      display: flex;
-      flex-direction: column;
-      height: 600px;
-      font-family: 'Lato', sans-serif;
-    }
-
-    /* Barra superior del chat (título + botón cerrar sesión) */
-    .chat-header {
-      background: #2b0f08;
-      padding: 20px;
-      border-top-left-radius: 20px;
-      border-top-right-radius: 20px;
-      border-bottom: 1px solid #3d160c;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .chat-header h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 22px;
-      margin: 0;
-    }
-
-    /* Área de mensajes con scroll vertical */
-    .chat-messages {
-      flex: 1;
-      padding: 20px;
-      overflow-y: auto; /* Scroll cuando hay muchos mensajes */
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-
-    /* Burbuja de mensaje (base) */
-    .message {
-      max-width: 75%;
-      padding: 14px 18px;
-      border-radius: 16px;
-      line-height: 1.5;
-      font-size: 15px;
-    }
-
-    /* Mensajes del bot: alineados a la izquierda */
-    .message.bot {
-      background: #2b0f08;
-      color: #f7e6e1;
-      align-self: flex-start;
-      border-bottom-left-radius: 4px; /* Esquina inferior izquierda plana */
-      border: 1px solid #4a1d13;
-    }
-
-    /* Mensajes del usuario: alineados a la derecha en rojo */
-    .message.user {
-      background: #e04a2b;
-      color: white;
-      align-self: flex-end;
-      border-bottom-right-radius: 4px; /* Esquina inferior derecha plana */
-    }
-
-    /* Barra inferior del chat (campo de texto + botón enviar) */
-    .chat-footer {
-      padding: 20px;
-      background: #2b0f08;
-      border-bottom-left-radius: 20px;
-      border-bottom-right-radius: 20px;
-      border-top: 1px solid #3d160c;
-    }
-
-    /* Contenedor del input y botón en fila */
-    .chat-form { display: flex; gap: 10px; }
-
-    /* Campo de texto para escribir */
-    .chat-input {
-      flex: 1;
-      background: #120502;
-      border: 1px solid #5c271b;
-      border-radius: 12px;
-      padding: 14px;
-      color: white;
-      font-size: 15px;
-      outline: none;
-    }
-
-    /* Botón de enviar mensaje */
-    .chat-send-btn {
-      background: #e04a2b;
-      color: white;
-      border: none;
-      border-radius: 12px;
-      padding: 0 25px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    /* ── RESPONSIVE MÓVIL (hasta 600px) ── */
-    @media (max-width: 600px) {
-      body { padding-top: 70px; }
-      main { padding: 20px 12px !important; align-items: flex-start !important; }
-
-      /* Tarjeta de contraseña más compacta */
-      .api-card { padding: 24px 18px; border-radius: 16px; }
-      .api-card h2 { font-size: 22px; }
-      .api-card p  { font-size: 13px; }
-
-      /* Chat ocupa el espacio disponible en pantalla */
-      .chat-container { height: calc(100svh - 120px); border-radius: 14px; }
-      .chat-header h3 { font-size: 17px; }
-      .chat-messages  { padding: 14px; gap: 10px; }
-      .message        { font-size: 13.5px; padding: 11px 14px; max-width: 88%; }
-      .chat-footer    { padding: 12px; }
-      .chat-input     { font-size: 14px; padding: 11px; }
-      .chat-send-btn  { padding: 0 16px; font-size: 14px; }
-    }
-
-    /* ── RESPONSIVE TABLET (601px - 900px) ── */
-    @media (max-width: 900px) and (min-width: 601px) {
-      .chat-container { max-width: 95%; }
-      main { padding: 30px 20px !important; }
-    }
-  </style>
 </head>
-<body>
+<body class="page-chat">
 
   <!-- ═══ NAVBAR ═══ -->
   <nav id="navbar">
@@ -229,7 +26,6 @@
       <li><a href="/visitas.html">Visitas</a></li>
       <li><a href="/granada-chat.html">Chat IA</a></li>
     </ul>
-    <!-- Hamburguesa para móvil -->
     <button class="hamburger" id="hamburger" aria-label="Menú">
       <span></span><span></span><span></span>
     </button>
@@ -238,45 +34,38 @@
   <!-- ═══ CONTENIDO PRINCIPAL ═══ -->
   <main style="min-height: 80vh; display:flex; justify-content:center; align-items:center; padding:40px 20px;">
 
-    <!-- Flask decide qué mostrar según si el usuario está autenticado -->
-
     {% if autenticado %}
-      <!-- ── VISTA DEL CHAT (usuario autenticado) ── -->
+      <!-- ── VISTA DEL CHAT ── -->
       <div class="chat-container">
 
-        <!-- Barra superior con título y botón de cerrar sesión -->
         <div class="chat-header">
           <h3> Granada Chat Inteligente</h3>
           <a href="/chat/salir" style="color: #ff6b6b; text-decoration: none; font-size: 14px; font-weight: bold;">✖ Cerrar Sesión</a>
         </div>
 
-        <!-- Área de mensajes: el bot saluda al inicio -->
         <div class="chat-messages" id="chatBox">
           <div class="message bot">
-            ¡Hola! Bienvenido a AGREHIMA. ¿En qué te puedo ayudar hoy? Te puedo contar sobre nuestros cultivos, beneficios o productos.
+            ¡Hola! Bienvenido a AGREHIMA. Soy tu asistente virtual especializado en granadas.  Puedo contarte sobre nuestros cultivos, beneficios, productos, recetas y cómo visitarnos. ¿En qué te puedo ayudar hoy?
           </div>
         </div>
 
-        <!-- Campo de escritura + botón enviar -->
         <div class="chat-footer">
           <form class="chat-form" id="chatForm">
-            <input type="text" id="userInput" class="chat-input" placeholder="Escribe tu pregunta sobre las granadas aquí..." autocomplete="off" required />
+            <input type="text" id="userInput" class="chat-input" placeholder="Pregúntame sobre granadas, visitas, productos..." autocomplete="off" />
             <button type="submit" class="chat-send-btn">Enviar</button>
           </form>
         </div>
       </div>
 
     {% else %}
-      <!-- ── FORMULARIO DE CONTRASEÑA (usuario NO autenticado) ── -->
+      <!-- ── FORMULARIO DE CONTRASEÑA ── -->
       <div class="api-card">
         <h2> Granada Chat</h2>
-        <p>Ingresa la contraseña de acceso para usar el chat.</p>
+        <p>Ingresa la contraseña de acceso para usar el chat inteligente sobre nuestras granadas.</p>
 
-        <!-- Flask valida la contraseña en el POST -->
         <form action="/granada-chat.html" method="POST">
-          <input type="password" class="api-input" placeholder="Contraseña..." name="api_key" required />
+          <input type="password" class="api-input" placeholder="Contraseña..." name="api_key" />
 
-          <!-- Flask envía el error si la contraseña es incorrecta -->
           {% if error %}
             <p style="color: #ff6b6b; font-size: 14px; margin-top: -15px; margin-bottom: 15px; font-weight: bold;">{{ error }}</p>
           {% endif %}
@@ -295,57 +84,7 @@
     <p>© 2024 Granadas Frescas. Todos los derechos reservados.</p>
   </footer>
 
-  <!-- JS compartido: controla el navbar hamburguesa -->
+  <!-- script.js maneja tanto el navbar como la lógica del chat -->
   <script src="../static/js/script.js"></script>
-
-  <!-- JS local: lógica del chat (respuestas automáticas por palabras clave) -->
-  <script>
-    const chatForm  = document.getElementById('chatForm');
-    const chatBox   = document.getElementById('chatBox');
-    const userInput = document.getElementById('userInput');
-
-    /* Solo se activa si el chat está visible (usuario autenticado) */
-    if (chatForm) {
-      chatForm.addEventListener('submit', function(e) {
-        e.preventDefault(); /* Evita que la página se recargue */
-
-        const text = userInput.value.trim();
-        if (!text) return;
-
-        /* 1. Mostrar el mensaje del usuario en la pantalla */
-        appendMessage(text, 'user');
-        userInput.value = ''; /* Limpiar el campo */
-
-        /* 2. Generar respuesta automática según palabras clave */
-        setTimeout(() => {
-          let respuestaBot = "Lo siento, sigo aprendiendo sobre nuestras deliciosas granadas. ¿Podrías intentar preguntarme de otra manera?";
-          const query = text.toLowerCase();
-
-          /* Respuestas por tema */
-          if (query.includes('beneficio') || query.includes('salud') || query.includes('bueno')) {
-            respuestaBot = "¡Nuestras granadas son un superalimento! Tienen un alto contenido de antioxidantes, ayudan a proteger el corazón, mejoran la digestión y fortalecen el sistema inmunológico gracias a su vitamina C.";
-          } else if (query.includes('producto') || query.includes('precio') || query.includes('venden')) {
-            respuestaBot = "Ofrecemos granadas frescas recién cosechadas, jugos 100% naturales sin azúcar añadida y cajas premium para regalo o distribución. Puedes ver más detalles en nuestra pestaña de Productos.";
-          } else if (query.includes('hola') || query.includes('buenos dias')) {
-            respuestaBot = "¡Hola! Qué gusto saludarte. ¿Te gustaría saber más sobre los beneficios de la granada o nuestros horarios de entrega?";
-          } else if (query.includes('donde') || query.includes('direccion') || query.includes('ubicacion')) {
-            respuestaBot = "Nos encontramos en la Calle Frutal 123, Valle Verde. ¡Nuestras tierras producen las mejores granadas de la región!";
-          }
-
-          /* 3. Mostrar la respuesta del bot */
-          appendMessage(respuestaBot, 'bot');
-        }, 800); /* Pequeño delay para simular que el bot "piensa" */
-      });
-    }
-
-    /* Función auxiliar: crea y agrega una burbuja de mensaje al chat */
-    function appendMessage(text, sender) {
-      const msgDiv = document.createElement('div');
-      msgDiv.classList.add('message', sender); /* 'user' o 'bot' */
-      msgDiv.innerText = text;
-      chatBox.appendChild(msgDiv);
-      chatBox.scrollTop = chatBox.scrollHeight; /* Auto-scroll al último mensaje */
-    }
-  </script>
 </body>
 </html>
