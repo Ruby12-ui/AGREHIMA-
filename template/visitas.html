@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reservar Visita — Granadas Frescas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght=600;700&family=Lato:wght=400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../static/css/output.css"/>
+  <link rel="stylesheet" href="../static/css/input.css"/>
+</head>
+<body class="page-visitas">
+
+  <!-- ═══ NAVBAR ═══ -->
+  <nav id="navbar">
+    <a class="nav-logo" href="/">
+      <img src="../static/image/logo.png" alt="Logo" style="width: 100px; height: auto; margin-right: 70px;">
+      <span>Granadas Frescas</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="/">Inicio</a></li>
+      <li><a href="productos.html">Productos</a></li>
+      <li><a href="beneficios.html">Beneficios</a></li>
+      <li><a href="nosotros.html">Nosotros</a></li>
+      <li><a href="galeria.html">Galería</a></li>
+      <li><a href="visitas.html">Visitas</a></li>
+      <li><a href="granada-chat.html">Chat IA</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ═══ FORMULARIO DE RESERVA ═══ -->
+  <main>
+    <div class="form-container">
+      <h1>Agendar Visita al Huerto</h1>
+      <p class="subtitle">Ven a conocer de dónde nacen las mejores granadas, realiza una degustación y adquiere tus productos directo de la cosecha.</p>
+
+      <!-- Mensaje de confirmación de Flask -->
+      {% if mensaje %}
+        <div class="alert-visita">{{ mensaje }}</div>
+      {% endif %}
+
+      <!-- id="formVisitas" necesario para que script.js active las validaciones -->
+      <form action="/visitas.html" method="POST" id="formVisitas" novalidate>
+
+        <div class="form-group">
+          <label for="nombre">Nombre Completo</label>
+          <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Ej. Juan Pérez" autocomplete="name">
+          <span class="campo-msg"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Correo Electrónico</label>
+          <input type="email" id="email" name="email" class="form-control" placeholder="juan@gmail.com" autocomplete="email">
+          <span class="campo-msg"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="telefono">Teléfono / WhatsApp</label>
+          <input type="tel" id="telefono" name="telefono" class="form-control" placeholder="Ej. +51 987654321" autocomplete="tel">
+          <span class="campo-msg"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="fecha_visita">Fecha Planeada</label>
+          <input type="date" id="fecha_visita" name="fecha_visita" class="form-control">
+          <span class="campo-msg"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="cantidad_personas">Número de Visitantes</label>
+          <input type="number" id="cantidad_personas" name="cantidad_personas" class="form-control" min="1" max="20" placeholder="1 – 20 personas">
+          <span class="campo-msg"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="interes_compra">¿Qué producto te interesa adquirir en tu visita?</label>
+          <select id="interes_compra" name="interes_compra" class="form-control">
+            <option value="">Selecciona una opción...</option>
+            <option value="Granadas Frescas por Jaba">Granadas Frescas en Fruta</option>
+            <option value="Jugo de Granada Natural">Jugo 100% Puro de Granada</option>
+            <option value="Cajas de Selección Premium">Cajas Premium de Selección</option>
+            <option value="Todos los Productos">Variado / Probar de todo un poco</option>
+          </select>
+          <span class="campo-msg"></span>
+        </div>
+
+        <button type="submit" class="btn-submit">Confirmar mi Reserva</button>
+      </form>
+    </div>
+  </main>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer>
+    <strong>Granadas Frescas</strong>
+    <p>Calle Frutal 123, Valle Verde · +51 931127110 · valleverde@gmail.com</p>
+    <p>© 2024 Granadas Frescas. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="../static/js/script.js"></script>
+</body>
+</html>

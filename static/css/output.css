@@ -1,0 +1,422 @@
+/* ═══════════════════════════════════════
+   output.css — Estilos COMPARTIDOS
+   Se aplica en TODAS las páginas del sitio
+   Nav, Footer, Botones, Variables CSS
+   ═══════════════════════════════════════ */
+
+/* ──────────────────────────────────────
+   RESET GLOBAL
+   Elimina márgenes y padding por defecto
+   del navegador en todos los elementos
+   ────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ──────────────────────────────────────
+   VARIABLES CSS (COLORES Y FUENTES)
+   Se usan en todo el sitio con var(--nombre)
+   Cambiar aquí afecta a toda la web
+   ────────────────────────────────────── */
+:root {
+  --rojo:       #C0392B;   /* Color principal rojo granada */
+  --rojo-dark:  #922B21;   /* Rojo más oscuro para hover */
+  --rojo-light: #E74C3C;   /* Rojo más claro para acentos */
+  --crema:      #F5F0E8;   /* Fondo crema suave */
+  --crema-dark: #EDE4D3;   /* Crema más oscuro para bordes */
+  --blanco:     #FFFFFF;
+  --texto:      #2C1A10;   /* Color del texto principal (café oscuro) */
+  --gris:       #7F8C8D;   /* Texto secundario gris */
+  --font-display: 'Playfair Display', serif; /* Fuente de títulos */
+  --font-body:    'Lato', sans-serif;        /* Fuente de cuerpo */
+}
+
+/* Scroll suave al hacer clic en enlaces ancla */
+html { scroll-behavior: smooth; }
+
+/* Estilos base del cuerpo */
+body {
+  font-family: var(--font-body);
+  color: var(--texto);
+  background: var(--blanco);
+  overflow-x: hidden; /* Evita scroll horizontal */
+}
+
+/* ──────────────────────────────────────
+   NAVBAR (BARRA DE NAVEGACIÓN)
+   Fija en la parte superior, siempre visible
+   Con efecto de cristal (backdrop-filter)
+   ────────────────────────────────────── */
+nav {
+  position: fixed;         /* Queda fija al hacer scroll */
+  top: 0; left: 0; right: 0;
+  z-index: 200;            /* Encima de todo el contenido */
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(10px); /* Efecto cristal desenfocado */
+  border-bottom: 1px solid rgba(192,57,43,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 3rem;
+  height: 64px;
+  transition: box-shadow 0.3s;
+}
+
+/* Padding especial para el navbar en páginas internas */
+#navbar {
+  padding: 40px 60px;
+}
+
+/* Sombra que aparece cuando el usuario hace scroll (agrega .scrolled con JS) */
+nav.scrolled {
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+}
+
+/* ── Logo del navbar (imagen + texto) ── */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+/* Ícono circular del logo (no se usa si hay imagen) */
+.logo-icon {
+  width: 36px; height: 36px;
+  background: var(--rojo);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff;
+  font-size: 1rem; font-weight: 700;
+  font-family: var(--font-display);
+}
+
+/* Texto "Granadas Frescas" al lado del logo */
+.nav-logo span {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--rojo-dark);
+  font-weight: 600;
+}
+
+/* ── Lista de enlaces del navbar ── */
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+/* Estilo de cada enlace */
+.nav-links a {
+  text-decoration: none;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--texto);
+  transition: color 0.2s;
+  position: relative;
+  padding-bottom: 3px;
+}
+
+/* Línea roja animada que aparece debajo del enlace al hover */
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 2px;
+  background: var(--rojo);
+  transition: width 0.3s;
+  border-radius: 2px;
+}
+
+/* Color rojo al pasar el mouse o cuando el enlace está activo */
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--rojo);
+}
+
+/* La línea crece al 100% al hacer hover o si está activo */
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
+}
+
+/* ── Botón hamburguesa (solo visible en móvil) ── */
+.hamburger {
+  display: none; /* Oculto en escritorio */
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 5px;
+  padding: 4px;
+}
+
+/* Las 3 líneas del botón hamburguesa */
+.hamburger span {
+  display: block;
+  width: 24px; height: 2px;
+  background: var(--texto);
+  border-radius: 2px;
+  transition: all 0.3s; /* Animación al convertirse en X */
+}
+
+/* ──────────────────────────────────────
+   BOTONES PRINCIPALES
+   .btn-primary → botón rojo sólido
+   .btn-outline → botón transparente con borde
+   ────────────────────────────────────── */
+.btn-primary {
+  display: inline-block;
+  background: var(--rojo);
+  color: #fff;
+  padding: 0.8rem 2.2rem;
+  border-radius: 30px;
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(192,57,43,0.4);
+}
+
+/* Efecto hover: sube ligeramente y oscurece */
+.btn-primary:hover {
+  background: var(--rojo-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(192,57,43,0.5);
+}
+
+/* Variante que ocupa el ancho completo */
+.btn-primary.btn-block {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+/* Botón con solo borde (para el hero de inicio) */
+.btn-outline {
+  display: inline-block;
+  background: transparent;
+  color: #fff;
+  padding: 0.8rem 2.2rem;
+  border-radius: 30px;
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 2px solid rgba(255,255,255,0.5);
+  margin-left: 1rem;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.btn-outline:hover {
+  background: rgba(255,255,255,0.12);
+  border-color: #fff;
+}
+
+/* ──────────────────────────────────────
+   ETIQUETAS DE SECCIÓN
+   Pequeño texto en rojo encima de los títulos
+   Ej: "NUESTROS PRODUCTOS", "GALERÍA VISUAL"
+   ────────────────────────────────────── */
+.section-label {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--rojo);
+  margin-bottom: 0.8rem;
+}
+
+/* Encabezado centrado de sección (label + h2 + párrafo) */
+.section-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.section-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3vw, 2.8rem); /* Tamaño fluido */
+  color: var(--texto);
+  margin-bottom: 1rem;
+}
+
+.section-header p {
+  color: var(--gris);
+  max-width: 560px;
+  margin: 0 auto;
+  line-height: 1.7;
+  font-size: 0.97rem;
+}
+
+/* ──────────────────────────────────────
+   ANIMACIONES DE SCROLL REVEAL
+   Los elementos con estas clases aparecen
+   con animación cuando el usuario hace scroll
+   El JS agrega la clase .visible al entrar
+   ────────────────────────────────────── */
+
+/* Aparece de abajo hacia arriba */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s, transform 0.65s;
+}
+
+/* Aparece de izquierda a derecha */
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity 0.65s, transform 0.65s;
+}
+
+/* Aparece de derecha a izquierda */
+.reveal-right {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity 0.65s, transform 0.65s;
+}
+
+/* Estado final: completamente visible y en posición */
+.reveal.visible,
+.reveal-left.visible,
+.reveal-right.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ──────────────────────────────────────
+   FOOTER (PIE DE PÁGINA)
+   Fondo verde, texto claro, centrado
+   ────────────────────────────────────── */
+footer {
+  background: #036622;
+  color: rgba(255,255,255,0.65);
+  text-align: center;
+  padding: 2.5rem 4rem;
+  font-size: 0.85rem;
+  line-height: 1.8;
+}
+
+footer strong {
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 1rem;
+}
+
+footer a {
+  color: rgba(255,255,255,0.45);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+footer a:hover { color: #fff; }
+
+/* ──────────────────────────────────────
+   PAGE WRAP
+   Espacio superior para compensar el navbar
+   fijo, evitando que tape el contenido
+   ────────────────────────────────────── */
+.page-wrap {
+  padding-top: 64px; /* Igual a la altura del navbar */
+}
+
+@media (max-width: 600px) {
+  .page-wrap { padding-top: 60px; } /* El navbar es más pequeño en móvil */
+}
+
+/* ──────────────────────────────────────
+   RESPONSIVE TABLET (hasta 900px)
+   El navbar colapsa en menú hamburguesa
+   ────────────────────────────────────── */
+@media (max-width: 900px) {
+  nav { padding: 0 1.5rem; }
+
+  /* Los links se ocultan y aparecen en columna al abrir el menú */
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 64px; left: 0; right: 0;
+    background: #fff;
+    flex-direction: column;
+    gap: 0;
+    border-bottom: 1px solid var(--crema-dark);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    z-index: 300;
+  }
+
+  /* Clase que agrega el JS al abrir el hamburguesa */
+  .nav-links.open { display: flex; }
+
+  /* Cada enlace ocupa toda la fila */
+  .nav-links li a {
+    padding: 1rem 2rem;
+    display: block;
+    border-top: 1px solid var(--crema);
+    font-size: 0.85rem;
+  }
+
+  /* Mostrar el botón hamburguesa */
+  .hamburger { display: flex; }
+
+  .btn-outline {
+    margin-left: 0;
+    margin-top: 0.8rem;
+    display: inline-block;
+  }
+
+  .section-header { margin-bottom: 2rem; }
+  .section-header h2 { font-size: clamp(1.5rem, 4vw, 2rem); }
+}
+
+/* ──────────────────────────────────────
+   RESPONSIVE MÓVIL (hasta 600px)
+   Ajustes más agresivos para pantallas
+   pequeñas como iPhone o Android básico
+   ────────────────────────────────────── */
+@media (max-width: 600px) {
+  nav {
+    padding: 0 1rem;
+    height: 60px; /* Navbar más compacto */
+  }
+
+  /* Logo más pequeño */
+  .nav-logo span { font-size: 0.88rem; }
+  .nav-logo img  { width: 72px !important; margin-right: 0 !important; }
+
+  /* El menú desplegable sale desde los 60px del navbar */
+  .nav-links { top: 60px; }
+
+  .nav-links li a {
+    padding: 0.85rem 1.5rem;
+    font-size: 0.82rem;
+  }
+
+  /* Botones más compactos */
+  .btn-primary,
+  .btn-outline {
+    padding: 0.7rem 1.4rem;
+    font-size: 0.75rem;
+  }
+
+  /* Footer más compacto */
+  footer {
+    padding: 2rem 1.2rem;
+    font-size: 0.78rem;
+  }
+
+  /* Textos de sección más pequeños */
+  .section-label { font-size: 0.65rem; }
+  .section-header p { font-size: 0.88rem; padding: 0 0.5rem; }
+  .section-header h2 { font-size: clamp(1.3rem, 5vw, 1.8rem); }
+}

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Granada Chat — Granadas Frescas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght=500;600&family=Lato:wght=300;400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../static/css/output.css" />
+  <link rel="stylesheet" href="../static/css/input.css" />
+</head>
+<body class="page-chat">
+
+  <!-- ═══ NAVBAR ═══ -->
+  <nav id="navbar">
+    <a class="nav-logo" href="/">
+      <img src="../static/image/logo.png" alt="Logo Granadas Frescas" style="width: 100px; height: auto; margin-right: 70px;">
+      <span>Granadas Frescas</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="/">Inicio</a></li>
+      <li><a href="/productos.html">Productos</a></li>
+      <li><a href="/beneficios.html">Beneficios</a></li>
+      <li><a href="/nosotros.html">Nosotros</a></li>
+      <li><a href="/galeria.html">Galería</a></li>
+      <li><a href="/visitas.html">Visitas</a></li>
+      <li><a href="/granada-chat.html">Chat IA</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ═══ CONTENIDO PRINCIPAL ═══ -->
+  <main style="min-height: 80vh; display:flex; justify-content:center; align-items:center; padding:40px 20px;">
+
+    {% if autenticado %}
+      <!-- ── VISTA DEL CHAT ── -->
+      <div class="chat-container">
+
+        <div class="chat-header">
+          <h3> Granada Chat Inteligente</h3>
+          <a href="/chat/salir" style="color: #ff6b6b; text-decoration: none; font-size: 14px; font-weight: bold;">✖ Cerrar Sesión</a>
+        </div>
+
+        <div class="chat-messages" id="chatBox">
+          <div class="message bot">
+            ¡Hola! Bienvenido a AGREHIMA. Soy tu asistente virtual especializado en granadas.  Puedo contarte sobre nuestros cultivos, beneficios, productos, recetas y cómo visitarnos. ¿En qué te puedo ayudar hoy?
+          </div>
+        </div>
+
+        <div class="chat-footer">
+          <form class="chat-form" id="chatForm">
+            <input type="text" id="userInput" class="chat-input" placeholder="Pregúntame sobre granadas, visitas, productos..." autocomplete="off" />
+            <button type="submit" class="chat-send-btn">Enviar</button>
+          </form>
+        </div>
+      </div>
+
+    {% else %}
+      <!-- ── FORMULARIO DE CONTRASEÑA ── -->
+      <div class="api-card">
+        <h2> Granada Chat</h2>
+        <p>Ingresa la contraseña de acceso para usar el chat inteligente sobre nuestras granadas.</p>
+
+        <form action="/granada-chat.html" method="POST">
+          <input type="password" class="api-input" placeholder="Contraseña..." name="api_key" />
+
+          {% if error %}
+            <p style="color: #ff6b6b; font-size: 14px; margin-top: -15px; margin-bottom: 15px; font-weight: bold;">{{ error }}</p>
+          {% endif %}
+
+          <button type="submit" class="api-btn">Empezar a chatear</button>
+        </form>
+      </div>
+    {% endif %}
+
+  </main>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer>
+    <strong>Granadas Frescas</strong>
+    <p>Calle Frutal 123, Valle Verde · +51 931127110 · valleverde@gmail.com</p>
+    <p>© 2024 Granadas Frescas. Todos los derechos reservados.</p>
+  </footer>
+
+  <!-- script.js maneja tanto el navbar como la lógica del chat -->
+  <script src="../static/js/script.js"></script>
+</body>
+</html>

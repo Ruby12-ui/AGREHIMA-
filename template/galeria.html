@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Galería — Granadas Frescas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../static/css/output.css"/>
+  <link rel="stylesheet" href="../static/css/input.css"/>
+</head>
+<body>
+
+  <!-- ═══ NAVBAR ═══ -->
+  <nav id="navbar">
+    <a class="nav-logo" href="/">
+      <img src="../static/image/logo.png" alt="Logo Granadas Frescas" style="width: 100px; height: auto; margin-right: 70px; margin-top: 30px;">
+      <span>Granadas Frescas</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="/">Inicio</a></li>
+      <li><a href="productos.html">Productos</a></li>
+      <li><a href="beneficios.html">Beneficios</a></li>
+      <li><a href="nosotros.html">Nosotros</a></li>
+      <li><a href="galeria.html">Galería</a></li>
+      <li><a href="visitas.html">Visitas</a></li>
+      <li><a href="granada-chat.html">Chat IA</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ═══ BANNER ═══ -->
+  <section class="banner banner--galeria">
+    <div class="banner-overlay">
+      <h1>GALERÍA</h1>
+      <p>El arte de la naturaleza</p>
+    </div>
+  </section>
+
+  <!-- ═══ CONTENIDO ═══ -->
+  <div class="page-wrap">
+    <section id="galeria">
+
+      <div class="section-header reveal">
+        <span class="section-label">Galería Visual</span>
+      </div>
+
+      <p class="galeria-quote reveal">
+        Cada imagen cuenta la historia de la naturaleza en su forma más pura. Nuestras granadas crecen con dedicación, sol y pasión para llegar frescas hasta ti.
+      </p>
+
+      <!-- Slider de imágenes -->
+      <div class="slider-wrap reveal">
+        <div class="slider-track" id="sliderTrack">
+          <div class="slide"><img src="../static/image/granada_hojas.jpg" alt="Granadas frescas"/></div>
+          <div class="slide"><img src="../static/image/granadas_planta.jpg" alt="Granada abierta"/></div>
+          <div class="slide"><img src="../static/image/granada_fruto.jpg" alt="Granada roja"/></div>
+          <div class="slide"><img src="../static/image/granada.jpg" alt="Jugo natural"/></div>
+        </div>
+        <button class="slider-btn prev" id="sliderPrev" aria-label="Anterior">&#8592;</button>
+        <button class="slider-btn next" id="sliderNext" aria-label="Siguiente">&#8594;</button>
+      </div>
+
+      <div class="slider-dots" id="sliderDots"></div>
+
+    </section>
+  </div>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer>
+    <strong>Granadas Frescas</strong>
+    <p>Calle Frutal 123, Valle Verde &nbsp;·&nbsp; +51 931127110 &nbsp;·&nbsp; valleverde@gmail.com</p>
+    <p>© 2024 Granadas Frescas. Todos los derechos reservados. &nbsp;·&nbsp; <a href="/">↑ Inicio</a></p>
+  </footer>
+
+  <script src="../static/js/script.js"></script>
+</body>
+</html>

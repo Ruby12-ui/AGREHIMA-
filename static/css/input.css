@@ -1,0 +1,1051 @@
+/* ═══════════════════════════════════════
+   input.css — Estilos de páginas INTERNAS
+   Se usa en: Productos, Beneficios,
+   Nosotros, Galería, Visitas, Chat IA
+   NO se usa en index.html (usa inicio.css)
+   ═══════════════════════════════════════ */
+
+/* ──────────────────────────────────────
+   ESPACIADO GENERAL
+   El navbar ocupa espacio fijo arriba,
+   las secciones tienen padding generoso
+   ────────────────────────────────────── */
+body { margin: 0; }
+
+#navbar { padding: 40px 60px; }
+
+section {
+  padding: 6rem 4rem;
+}
+
+/* ══════════════════════════════════════════
+   BANNER HERO (páginas internas)
+   Usado en: Beneficios, Productos,
+   Galería, Nosotros
+   ══════════════════════════════════════════ */
+.banner {
+  height: 500px;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Overlay oscuro sobre la imagen del banner */
+.banner-overlay {
+  width: 100%;
+  height: 32vw;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.banner h1 {
+  color: #fff;
+  font-size: 50px;
+  letter-spacing: 3px;
+  margin-bottom: 10px;
+}
+
+.banner p { color: #fff; font-size: 14px; }
+
+/* ──────────────────────────────────────
+   Imágenes de fondo por página
+   ────────────────────────────────────── */
+
+/* beneficios.html */
+.banner--beneficios {
+  background: url('/static/image/frutas.jpg') center/cover no-repeat;
+}
+
+.banner--productos {
+  background: url('/static/image/granadas_frescas.jpg') center/cover no-repeat;
+}
+
+.banner--galeria {
+  background: url('/static/image/frutitas.jpg') center/cover no-repeat;
+}
+
+.banner--nosotros {
+  background: url('/static/image/fruta.jpg') center/cover no-repeat;
+}
+
+/* ════════════════════════════════
+   SECCIÓN: PRODUCTOS
+   Grid de tarjetas con imagen,
+   badge de categoría y descripción
+   ════════════════════════════════ */
+#productos {
+  background: var(--crema);
+}
+
+/* Grid responsivo */
+.productos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Tarjeta individual de producto */
+.producto-card {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(192,57,43,0.07);
+  transition: transform 0.35s, box-shadow 0.35s;
+}
+
+.producto-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 48px rgba(192,57,43,0.16);
+}
+
+.producto-img {
+  height: 220px;
+  overflow: hidden;
+  position: relative;
+}
+
+.producto-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.45s;
+}
+
+.producto-card:hover .producto-img img {
+  transform: scale(1.07);
+}
+
+/* Badge de categoría */
+.prod-badge {
+  position: absolute;
+  top: 1rem; right: 1rem;
+  background: var(--rojo);
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+}
+
+.producto-body {
+  padding: 1.5rem;
+}
+
+.producto-body h3 {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  margin-bottom: 0.5rem;
+}
+
+.producto-body p {
+  font-size: 0.88rem;
+  color: var(--gris);
+  line-height: 1.6;
+}
+
+/* ──────────────────────────────────────
+   BOTÓN ROJO ANIMADO (.btn-custom)
+   Usado en beneficios.html
+   ────────────────────────────────────── */
+.btn-custom {
+  background-color: #c0392b;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  display: inline-block;
+  position: relative;
+  animation: moverLado 4s infinite alternate ease-in-out;
+  transition: background-color 0.3s ease;
+}
+
+.btn-custom:hover {
+  background-color: #922b21;
+}
+
+@keyframes moverLado {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(20px); }
+}
+
+/* ════════════════════════════════
+   SECCIÓN: BENEFICIOS
+   2 columnas: imagen izquierda,
+   contenido derecha
+   ════════════════════════════════ */
+#beneficios {
+  background: #ffffff;
+}
+
+.beneficios-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+/* Imagen grande con sombra */
+.beneficios-img-wrap {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  height: 500px;
+  box-shadow: 0 24px 64px rgba(192,57,43,0.18);
+}
+
+/* Zoom en la imagen al pasar el mouse */
+.beneficios-img-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.beneficios-img-wrap:hover img {
+  transform: scale(1.1);
+}
+
+/* Texto flotante sobre la imagen */
+.bene-float {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(transparent, rgba(40,8,4,0.72));
+  padding: 2rem 1.5rem 1.5rem;
+}
+
+.bene-float p {
+  color: rgba(255,255,255,0.9);
+  font-size: 0.85rem;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.beneficios-content h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 2.5vw, 2.4rem);
+  margin-bottom: 1rem;
+}
+
+.beneficios-content > p {
+  color: var(--gris);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  font-size: 0.97rem;
+}
+
+/* Animación de brillo en botón de beneficios */
+#beneficios .btn-primary {
+  animation: colorChange 2s infinite alternate;
+}
+
+@keyframes colorChange {
+  0%   { filter: brightness(1); }
+  100% { filter: brightness(0.8); }
+}
+
+/* Grid Minerales / Vitaminas */
+.nutrientes-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  background: var(--crema);
+  border-radius: 14px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.nutriente-col h4 {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--rojo);
+  margin-bottom: 0.8rem;
+}
+
+.nutriente-list {
+  list-style: none;
+}
+
+.nutriente-list li {
+  font-size: 0.88rem;
+  padding: 0.3rem 0;
+  color: var(--texto);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nutriente-list li::before {
+  content: '';
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--rojo);
+  flex-shrink: 0;
+}
+
+.vitaminas-grid {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.vita-badge {
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: #fff;
+}
+
+.vita-A   { background: #E74C3C; }
+.vita-D   { background: #E67E22; }
+.vita-B6  { background: #27AE60; }
+.vita-B12 { background: #8E44AD; }
+
+.beneficios-nota {
+  background: var(--crema);
+  border-left: 3px solid var(--rojo);
+  border-radius: 0 10px 10px 0;
+  padding: 1rem 1.2rem;
+  font-size: 0.87rem;
+  color: var(--texto);
+  line-height: 1.65;
+}
+
+/* ════════════════════════════════
+   SECCIÓN: NOSOTROS
+   ════════════════════════════════ */
+
+/* Bloque de encabezado centrado */
+.nosotros-top {
+  text-align: center;
+  padding: 60px 0 40px 0;
+}
+
+.nosotros-top h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 48px;
+  color: #3e2723;
+  margin: 0 0 15px 0;
+  font-weight: 700;
+}
+
+.nosotros-top .sub-text {
+  color: #6d6d6d;
+  font-size: 16px;
+  max-width: 650px;
+  margin: 0 auto;
+  line-height: 1.6;
+  font-family: 'Lato', sans-serif;
+}
+
+/* Grid de tarjetas MVH */
+.mvh-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  max-width: 950px;
+  margin: 0 auto 60px auto;
+}
+
+.mvh-card {
+  background-color: #F5F0E8 !important;
+  border-radius: 14px;
+  padding: 2.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+  border-top: 3px solid var(--rojo) !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: none !important;
+  text-align: center;
+}
+
+.mvh-card:hover {
+  background-color: #ebdaba !important;
+  transform: none !important;
+}
+
+.mvh-card:last-child { grid-column: span 2; }
+
+.mvh-icon { font-size: 2rem; margin-bottom: 10px; }
+
+.mvh-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  color: #3e2723;
+  margin-bottom: 12px;
+}
+
+.mvh-card p { color: #555; line-height: 1.6; font-size: 14.5px; }
+
+/* ════════════════════════════════
+   ALIADOS
+   ════════════════════════════════ */
+.aliados-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  max-width: 900px;
+  margin: 30px auto 0 auto;
+}
+
+.aliados-grid img {
+  width: 100%;
+  height: 50px;
+  object-fit: contain;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.aliados-grid img:hover {
+  transform: scale(1.08);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* ════════════════════════════════
+   SECCIÓN: GALERÍA — Slider
+   ════════════════════════════════ */
+#galeria {
+  background: #fff;
+  text-align: center;
+}
+
+.galeria-quote {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  color: var(--texto);
+  max-width: 680px;
+  margin: 0 auto 3rem;
+  line-height: 1.65;
+}
+
+.galeria-quote::before {
+  content: '\201C';
+  color: var(--rojo);
+  font-size: 2em;
+  line-height: 0;
+  vertical-align: -0.35em;
+  margin-right: 4px;
+}
+
+.galeria-quote::after {
+  content: '\201D';
+  color: var(--rojo);
+  font-size: 2em;
+  line-height: 0;
+  vertical-align: -0.35em;
+  margin-left: 4px;
+}
+
+.slider-wrap {
+  position: relative;
+  max-width: 860px;
+  margin: 0 auto;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(192,57,43,0.14);
+  height: 460px;
+}
+
+.slider-track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.55s cubic-bezier(0.4,0,0.2,1);
+}
+
+.slide {
+  min-width: 100%;
+  height: 100%;
+}
+
+.slide img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.92);
+  border: none;
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  font-size: 1rem;
+  cursor: pointer;
+  color: var(--rojo-dark);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: bold;
+  transition: background 0.2s, transform 0.2s;
+  z-index: 10;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+}
+
+.slider-btn:hover {
+  background: #fff;
+  transform: translateY(-50%) scale(1.08);
+}
+
+.slider-btn.prev { left:  1rem; }
+.slider-btn.next { right: 1rem; }
+
+.slider-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 1.5rem;
+}
+
+.slider-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: rgba(192,57,43,0.25);
+  cursor: pointer;
+  transition: all 0.3s;
+  border: none;
+}
+
+.slider-dot.active {
+  background: var(--rojo);
+  width: 24px;
+  border-radius: 4px;
+}
+
+/* ════════════════════════════════
+   SECCIÓN: CONTACTO / FORMULARIO
+   ════════════════════════════════ */
+#contacto {
+  background: var(--crema);
+}
+
+.contacto-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.contacto-info h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 2.5vw, 2.4rem);
+  margin-bottom: 0.4rem;
+}
+
+.contacto-info .sub {
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--rojo);
+  font-size: 1rem;
+  margin-bottom: 2rem;
+}
+
+.info-item { margin-bottom: 1.4rem; }
+
+.info-item .lbl {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--rojo);
+  margin-bottom: 0.25rem;
+}
+
+.info-item .val {
+  font-size: 0.95rem;
+  color: var(--texto);
+  line-height: 1.55;
+}
+
+.contacto-img-wrap {
+  height: 200px;
+  border-radius: 14px;
+  overflow: hidden;
+  margin-top: 2rem;
+}
+
+.contacto-img-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+
+.form-card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 2.5rem;
+  box-shadow: 0 8px 32px rgba(192,57,43,0.08);
+}
+
+.form-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+  color: var(--texto);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-group { margin-bottom: 1rem; }
+
+.form-group label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--rojo);
+  margin-bottom: 0.4rem;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.72rem 1rem;
+  border: 1.5px solid var(--crema-dark);
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--texto);
+  background: #fff;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+  resize: none;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--rojo);
+  box-shadow: 0 0 0 3px rgba(192,57,43,0.1);
+}
+
+/* Borde rojo de error en campos inválidos */
+.form-group input.campo-error,
+.form-group textarea.campo-error,
+.form-group select.campo-error {
+  border-color: var(--rojo-dark);
+  box-shadow: 0 0 0 3px rgba(192,57,43,0.15);
+}
+
+/* Borde verde de éxito en campos válidos */
+.form-group input.campo-ok,
+.form-group textarea.campo-ok,
+.form-group select.campo-ok {
+  border-color: #27AE60;
+  box-shadow: 0 0 0 3px rgba(39,174,96,0.1);
+}
+
+/* Mensaje de error inline por campo */
+.campo-msg {
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-top: 4px;
+  display: none;
+  color: var(--rojo-dark);
+}
+
+.campo-msg.visible {
+  display: block;
+}
+
+.form-group textarea { height: 120px; }
+
+/* Mensaje de éxito o error global */
+.form-msg {
+  margin-top: 1rem;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  display: none;
+}
+
+.form-msg.success { background: rgba(39,174,96,0.1); color: #1e8449; }
+.form-msg.error   { background: rgba(192,57,43,0.1); color: var(--rojo-dark); }
+
+/* ════════════════════════════════
+   PÁGINA: VISITAS — Formulario de reserva
+   ════════════════════════════════ */
+body.page-visitas {
+  padding-top: 80px;
+  background-color: #fcf8f6;
+  font-family: 'Lato', sans-serif;
+}
+
+.form-container {
+  max-width: 600px;
+  margin: 40px auto;
+  background: white;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.form-container h1 {
+  font-family: 'Playfair Display', serif;
+  color: #2b0f08;
+  font-size: 32px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.form-container p.subtitle {
+  text-align: center;
+  color: #70534c;
+  margin-bottom: 30px;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.form-container .form-group { margin-bottom: 20px; }
+
+.form-container .form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #2b0f08;
+  font-weight: bold;
+  font-size: 0.85rem;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.form-control {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d1c2be;
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-size: 15px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+
+.form-control:focus {
+  border-color: #e04a2b;
+  box-shadow: 0 0 0 3px rgba(224,74,43,0.1);
+}
+
+.form-control.campo-error {
+  border-color: #c0392b;
+  box-shadow: 0 0 0 3px rgba(192,57,43,0.12);
+}
+
+.form-control.campo-ok {
+  border-color: #27AE60;
+  box-shadow: 0 0 0 3px rgba(39,174,96,0.1);
+}
+
+.btn-submit {
+  width: 100%;
+  background: #e04a2b;
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+  margin-top: 10px;
+}
+
+.btn-submit:hover { background: #c93b1e; }
+.btn-submit:disabled { background: #aaa; cursor: not-allowed; }
+
+.alert-visita {
+  padding: 15px;
+  background: #e1f5fe;
+  color: #0288d1;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* ════════════════════════════════
+   PÁGINA: CHAT IA
+   ════════════════════════════════ */
+body.page-chat {
+  padding-top: 110px;
+  background-color: #120502;
+  color: #f7e6e1;
+}
+
+.api-card {
+  background: #2b0f08;
+  border: 1px solid #4a1d13;
+  border-radius: 24px;
+  padding: 35px;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  font-family: 'Lato', sans-serif;
+}
+
+.api-card h2 {
+  font-family: 'Playfair Display', serif;
+  color: #f7e6e1;
+  font-size: 28px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.api-card p {
+  color: #cca499;
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+
+.api-input {
+  width: 100%;
+  background: #1c0a05;
+  border: 1px solid #5c271b;
+  border-radius: 14px;
+  padding: 16px;
+  color: #ffffff;
+  font-size: 16px;
+  margin-bottom: 25px;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.api-input:focus {
+  border-color: #e04a2b;
+  box-shadow: 0 0 0 3px rgba(224,74,43,0.15);
+}
+
+.api-btn {
+  width: 100%;
+  background: #e04a2b;
+  color: white;
+  border: none;
+  border-radius: 14px;
+  padding: 16px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.api-btn:hover { background: #c93b1e; }
+
+.chat-container {
+  width: 100%;
+  max-width: 800px;
+  background: #1c0a05;
+  border: 1px solid #3d160c;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+  display: flex;
+  flex-direction: column;
+  height: 600px;
+  font-family: 'Lato', sans-serif;
+}
+
+.chat-header {
+  background: #2b0f08;
+  padding: 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom: 1px solid #3d160c;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-header h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  margin: 0;
+  color: #f7e6e1;
+}
+
+.chat-messages {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.message {
+  max-width: 75%;
+  padding: 14px 18px;
+  border-radius: 16px;
+  line-height: 1.5;
+  font-size: 15px;
+}
+
+.message.bot {
+  background: #2b0f08;
+  color: #f7e6e1;
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+  border: 1px solid #4a1d13;
+}
+
+.message.user {
+  background: #e04a2b;
+  color: white;
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+}
+
+/* Indicador de "escribiendo..." */
+.message.typing {
+  background: #2b0f08;
+  color: #cca499;
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+  border: 1px solid #4a1d13;
+  font-style: italic;
+  font-size: 13px;
+}
+
+.chat-footer {
+  padding: 20px;
+  background: #2b0f08;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-top: 1px solid #3d160c;
+}
+
+.chat-form { display: flex; gap: 10px; }
+
+.chat-input {
+  flex: 1;
+  background: #120502;
+  border: 1px solid #5c271b;
+  border-radius: 12px;
+  padding: 14px;
+  color: white;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.chat-input:focus {
+  border-color: #e04a2b;
+}
+
+.chat-send-btn {
+  background: #e04a2b;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 0 25px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.chat-send-btn:hover { background: #c93b1e; }
+
+/* ──────────────────────────────────────
+   RESPONSIVE TABLET (hasta 900px)
+   ────────────────────────────────────── */
+@media (max-width: 900px) {
+  section { padding: 4rem 1.5rem; }
+
+  .beneficios-inner  { grid-template-columns: 1fr; gap: 2.5rem; }
+  .beneficios-img-wrap { height: 300px; }
+  .mvh-grid          { grid-template-columns: 1fr; }
+  .mvh-card:last-child { grid-column: span 1; }
+  .contacto-inner    { grid-template-columns: 1fr; gap: 2rem; }
+  .form-row          { grid-template-columns: 1fr; }
+  .slider-wrap       { height: 300px; }
+  .productos-grid    { grid-template-columns: 1fr; }
+  .nutrientes-wrap   { grid-template-columns: 1fr 1fr; }
+  .galeria-quote     { font-size: 1rem; padding: 0 1rem; }
+  .aliados-grid      { grid-template-columns: repeat(2, 1fr); }
+
+  .chat-container { max-width: 95%; }
+}
+
+/* ──────────────────────────────────────
+   RESPONSIVE MÓVIL (hasta 600px)
+   ────────────────────────────────────── */
+@media (max-width: 600px) {
+  section { padding: 3rem 1rem; }
+
+  #navbar { padding: 0 1rem !important; }
+
+  /* Banner */
+  .banner { height: 220px !important; }
+  .banner h1 { font-size: 28px !important; letter-spacing: 1.5px !important; }
+  .banner p  { font-size: 12px !important; }
+  .banner-overlay { height: auto !important; padding: 1.5rem 0 !important; }
+
+  /* Productos */
+  .productos-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+  .producto-img   { height: 180px; }
+  .producto-body h3 { font-size: 1rem; }
+
+  /* Beneficios */
+  .beneficios-inner  { gap: 1.5rem; }
+  .beneficios-img-wrap { height: 230px; border-radius: 14px; }
+  .nutrientes-wrap   { grid-template-columns: 1fr; gap: 1rem; padding: 1rem; }
+  .vitaminas-grid    { gap: 8px; }
+  .vita-badge        { width: 36px; height: 36px; font-size: 0.75rem; }
+  .beneficios-nota   { font-size: 0.82rem; }
+  .beneficios-content h2 { font-size: 1.5rem; }
+
+  /* Nosotros */
+  .mvh-grid          { grid-template-columns: 1fr; gap: 1rem; }
+  .mvh-card          { padding: 1.5rem; }
+  .mvh-card:last-child { grid-column: span 1; }
+  .aliados-grid      { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .aliados-grid img  { height: 40px; }
+
+  /* Galería */
+  .slider-wrap  { height: 220px; border-radius: 12px; }
+  .slider-btn   { width: 36px; height: 36px; font-size: 0.85rem; }
+  .galeria-quote { font-size: 0.88rem; margin-bottom: 1.5rem; }
+
+  /* Formularios */
+  .form-card    { padding: 1.5rem; border-radius: 12px; }
+  .form-row     { grid-template-columns: 1fr; }
+  .btn-custom   { font-size: 0.82rem; padding: 10px 18px; }
+
+  /* Visitas */
+  body.page-visitas { padding-top: 70px; }
+  .form-container { margin: 16px; padding: 24px 18px; border-radius: 12px; }
+  .form-container h1 { font-size: 22px; }
+  .form-container p.subtitle { font-size: 0.82rem; }
+  .btn-submit { font-size: 15px; padding: 13px; }
+
+  /* Chat */
+  body.page-chat { padding-top: 70px; }
+  .api-card { padding: 24px 18px; border-radius: 16px; }
+  .api-card h2 { font-size: 22px; }
+  .api-card p  { font-size: 13px; }
+  .chat-container { height: calc(100svh - 120px); border-radius: 14px; }
+  .chat-header h3 { font-size: 17px; }
+  .chat-messages  { padding: 14px; gap: 10px; }
+  .message        { font-size: 13.5px; padding: 11px 14px; max-width: 88%; }
+  .chat-footer    { padding: 12px; }
+  .chat-input     { font-size: 14px; padding: 11px; }
+  .chat-send-btn  { padding: 0 16px; font-size: 14px; }
+}
